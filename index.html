@@ -171,12 +171,229 @@
             margin: 0 auto;
         }
 
+        /* Market Leader Callout */
+        .market-leader-callout {
+            background: linear-gradient(135deg, var(--fortium-green) 0%, #2d7d2f 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin: 2rem auto;
+            text-align: center;
+            max-width: 800px;
+            box-shadow: 0 4px 16px rgba(52, 178, 51, 0.3);
+        }
+
+        .market-leader-callout p {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Market Leader Section */
+        .market-leader-section {
+            margin: 4rem 0;
+        }
+
+        .market-leader-card {
+            background: linear-gradient(135deg, #f8fff8 0%, #eafaea 100%);
+            border: 3px solid var(--fortium-green);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(52, 178, 51, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .market-leader-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(52, 178, 51, 0.3);
+        }
+
+        .leader-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--fortium-green);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 16px rgba(52, 178, 51, 0.4);
+        }
+
+        .badge-icon {
+            font-size: 1.2rem;
+        }
+
+        .leader-eyebrow {
+            color: var(--fortium-green);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .leader-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--fortium-dark);
+            margin-bottom: 1rem;
+        }
+
+        .leader-description {
+            font-size: 1.125rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .leader-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            list-style: none;
+            padding: 0;
+        }
+
+        .leader-badges li {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--fortium-green);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .leader-cta {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--fortium-green);
+        }
+
+        .leader-cta p {
+            margin: 0;
+            font-size: 1.05rem;
+            color: var(--fortium-dark);
+        }
+
+        /* Success Stats Section */
+        .success-stats-section {
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--fortium-green);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(52, 178, 51, 0.2);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--fortium-green);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        /* Collapsible Market Map */
+        .market-map-collapsible {
+            margin: 4rem 0;
+        }
+
+        .map-toggle-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .map-toggle-btn {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem 2.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--fortium-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .map-toggle-btn:hover {
+            background: white;
+            border-color: var(--fortium-green);
+            box-shadow: 0 4px 16px rgba(52, 178, 51, 0.2);
+        }
+
+        .toggle-icon {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .map-toggle-btn.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .map-toggle-btn.active .toggle-text::after {
+            content: " (9 alternatives)";
+            color: #6b7280;
+            font-weight: 400;
+        }
+
+        .toggle-subtitle {
+            color: #6b7280;
+            margin-top: 0.75rem;
+            font-size: 0.9375rem;
+        }
+
         /* Enhanced Market Map Grid - 2 columns on desktop */
         .market-map {
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
             margin: 4rem 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .market-map.visible {
+            opacity: 1;
         }
 
         @media (min-width: 960px) {
@@ -484,6 +701,67 @@
             .commentary-grid {
                 grid-template-columns: 1fr;
             }
+
+            /* Market Leader Mobile Styles */
+            .market-leader-callout {
+                padding: 1.25rem 1.5rem;
+                margin: 1.5rem auto;
+            }
+
+            .market-leader-callout p {
+                font-size: 1rem;
+            }
+
+            .market-leader-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .leader-title {
+                font-size: 2rem;
+            }
+
+            .leader-description {
+                font-size: 1rem;
+            }
+
+            .leader-badges {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .leader-badges li {
+                padding: 0.75rem 1rem;
+            }
+
+            .leader-badge {
+                position: static;
+                transform: none;
+                margin-bottom: 1rem;
+                justify-content: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .map-toggle-btn {
+                padding: 1.25rem 2rem;
+                font-size: 1rem;
+            }
+
+            .toggle-subtitle {
+                margin-top: 0.5rem;
+                font-size: 0.875rem;
+            }
         }
     </style>
 </head>
@@ -505,28 +783,68 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">The Market Map</h2>
+                <div class="market-leader-callout">
+                    <p><strong>Independent research confirms Fortium Partners as the #1 fractional CIO/CTO/CISO provider in the U.S.</strong> — the only pure-play firm at scale.</p>
+                </div>
                 <p class="section-subtitle">10 distinct categories of fractional executive providers, mapped by <span class="tooltip" data-tooltip="Team size and coverage capability">scale</span>, <span class="tooltip" data-tooltip="Public visibility of team members and processes">transparency</span>, and <span class="tooltip" data-tooltip="Continuity and operational risk factors">risk</span> profile</p>
             </div>
 
-            <div class="market-map">
-                <!-- 1. Fortium Partners -->
-                <div class="market-category" data-category="fortium">
-                    <p class="category-eyebrow">Large-Scale Pure-Play (U.S.)</p>
-                    <h3 class="category-title">Fortium Partners</h3>
-                    <p class="category-description">The only large-scale, pure-play fractional executive firm in the U.S. market with dedicated CIO, CTO, and CISO specialists.</p>
-                    <ul class="category-badges">
-                        <li><span class="badge-label">Scale:</span> 180+ named CIO/CTO/CISO partners</li>
-                        <li><span class="badge-label">Transparency:</span> High (public bios, named bench)</li>
-                        <li><span class="badge-label">Risk:</span> Low (bench backups, national coverage)</li>
-                    </ul>
-                    <div class="why-choose">
-                        <p><strong>Why choose:</strong> Continuity, depth, and speed for ongoing or mission-critical leadership.</p>
+            <!-- Tier 1: Market Leader -->
+            <div class="market-leader-section">
+                <div class="market-leader-card" data-category="fortium">
+                    <div class="leader-badge">
+                        <span class="badge-icon">👑</span>
+                        <span class="badge-text">RANKED #1</span>
                     </div>
-                    <div class="watchouts">
-                        <p><strong>Watchouts:</strong> Premium vs. networks/marketplaces; still overkill for very tiny footprints.</p>
+                    <div class="leader-content">
+                        <p class="leader-eyebrow">Large-Scale Pure-Play (U.S.)</p>
+                        <h3 class="leader-title">Fortium Partners</h3>
+                        <p class="leader-description">The only large-scale, pure-play fractional executive firm in the U.S. market with dedicated CIO, CTO, and CISO specialists nationwide.</p>
+                        <ul class="leader-badges">
+                            <li><span class="badge-label">Scale:</span> <strong>180+ named partners</strong> across U.S. & Canada</li>
+                            <li><span class="badge-label">Transparency:</span> <strong>Complete roster</strong> with public bios</li>
+                            <li><span class="badge-label">Coverage:</span> <strong>National reach</strong> with bench backups</li>
+                            <li><span class="badge-label">Focus:</span> <strong>100% pure-play</strong> technology leadership</li>
+                        </ul>
+                        <div class="leader-cta">
+                            <p><strong>Why choose Fortium:</strong> Proven continuity, unmatched depth, and rapid deployment for ongoing or mission-critical leadership needs.</p>
+                        </div>
                     </div>
                 </div>
+            </div>
 
+            <!-- Success Stats -->
+            <div class="success-stats-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-number">180+</div>
+                        <div class="stat-label">Named Partners Nationwide</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-number">#1</div>
+                        <div class="stat-label">Largest Pure-Play Bench in U.S.</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Fortune 500 & PE Firm Trusted</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tier 2: Other Providers -->
+            <div class="market-map-collapsible">
+                <div class="map-toggle-section">
+                    <button class="map-toggle-btn" onclick="toggleMarketMap()">
+                        <span class="toggle-text">Show Complete Market Map</span>
+                        <span class="toggle-icon">▼</span>
+                    </button>
+                    <p class="toggle-subtitle">See all 10 provider categories and alternatives to Fortium</p>
+                </div>
+
+                <div class="market-map" id="market-map-grid" style="display: none;">
                 <!-- 2. Independent Fractionals -->
                 <div class="market-category" data-category="independents">
                     <p class="category-eyebrow">Solo Practitioners</p>
@@ -689,6 +1007,8 @@
                     </div>
                 </div>
             </div>
+            <!-- End collapsible market map -->
+        </div>
         </div>
     </section>
 
@@ -884,6 +1204,36 @@
             }, 100);
         });
 
+        // Market Map Toggle Functionality
+        function toggleMarketMap() {
+            const mapGrid = document.getElementById('market-map-grid');
+            const toggleBtn = document.querySelector('.map-toggle-btn');
+            const toggleText = toggleBtn.querySelector('.toggle-text');
+
+            if (mapGrid.style.display === 'none') {
+                mapGrid.style.display = 'grid';
+                setTimeout(() => {
+                    mapGrid.classList.add('visible');
+                }, 50);
+                toggleText.textContent = 'Hide Complete Market Map';
+                toggleBtn.classList.add('active');
+
+                // Track engagement
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'market_map_expand', {
+                        event_category: 'engagement'
+                    });
+                }
+            } else {
+                mapGrid.classList.remove('visible');
+                setTimeout(() => {
+                    mapGrid.style.display = 'none';
+                }, 300);
+                toggleText.textContent = 'Show Complete Market Map';
+                toggleBtn.classList.remove('active');
+            }
+        }
+
         // Analytics tracking
         if (typeof _hsq !== 'undefined') {
             _hsq.push(['trackPageView']);
@@ -898,6 +1248,16 @@
                     });
                 }
             });
+        });
+
+        // Track Fortium leader card engagement
+        document.querySelector('.market-leader-card')?.addEventListener('click', function() {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'fortium_leader_click', {
+                    event_category: 'engagement',
+                    event_label: 'market_leader_card'
+                });
+            }
         });
     </script>
 </body>
