@@ -4,7 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The 2025 Market Map of Fractional CIO/CTO/CISO Leadership | Fortium Partners</title>
-    <meta name="description" content="Independent, evidence-based research on the fractional executive leadership market. The definitive map cutting through misleading 'Top 10' lists.">
+    <meta name="description" content="Independent, evidence-based research that finally clarifies a fragmented fractional executive market. The definitive map cutting through misleading 'Top 10' lists.">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The 2025 Market Map of Fractional CIO/CTO/CISO Leadership">
+    <meta property="og:description" content="Independent, evidence-based research that finally clarifies a fragmented fractional executive market.">
+    <meta property="og:url" content="https://fortiumpartners.github.io/top10-technology-leaders/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The 2025 Market Map of Fractional CIO/CTO/CISO Leadership">
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "The 2025 Market Map of Fractional CIO/CTO/CISO Leadership",
+      "description": "Independent, evidence-based research that finally clarifies a fragmented fractional executive market.",
+      "author": {
+        "@type": "Organization",
+        "name": "Fortium Partners"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Fortium Partners"
+      }
+    }
+    </script>
 
     <style>
         /* Fortium Partners Design System */
@@ -145,45 +171,55 @@
             margin: 0 auto;
         }
 
-        /* Market Map Grid */
+        /* Enhanced Market Map Grid - 2 columns on desktop */
         .market-map {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
             margin: 4rem 0;
         }
 
+        @media (min-width: 960px) {
+            .market-map {
+                grid-template-columns: 1fr 1fr;
+                gap: 2.5rem;
+            }
+        }
+
         .market-category {
             background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e6e6e6;
+            border-radius: 16px;
+            padding: 2.5rem;
             transition: all 0.3s ease;
             cursor: pointer;
             border-left: 5px solid var(--fortium-green);
+            position: relative;
         }
 
         .market-category:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
             border-left-color: var(--fortium-pink);
         }
 
-        .category-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--fortium-dark);
-            margin-bottom: 0.5rem;
+        .category-eyebrow {
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.06em;
+            font-size: 0.8rem;
+            margin: 0.25rem 0 1rem;
+            opacity: 0.7;
+            color: var(--fortium-gray);
+            font-weight: 600;
         }
 
-        .category-subtitle {
-            font-size: 0.9rem;
-            color: var(--fortium-gray);
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--fortium-dark);
             margin-bottom: 1rem;
             text-transform: uppercase;
-            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .category-description {
@@ -192,43 +228,73 @@
             margin-bottom: 1.5rem;
         }
 
-        .category-metrics {
+        .category-badges {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1rem;
             display: flex;
-            gap: 2rem;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+        }
+
+        .category-badges li {
+            font-size: 0.9rem;
+            color: var(--fortium-dark);
+        }
+
+        .badge-label {
+            font-weight: 700;
+            color: var(--fortium-green);
+        }
+
+        .why-choose, .watchouts {
             margin-bottom: 1rem;
         }
 
-        .metric {
-            text-align: center;
-        }
-
-        .metric-value {
-            font-size: 1.5rem;
+        .why-choose strong, .watchouts strong {
             font-weight: 700;
-            color: var(--fortium-green);
-            display: block;
+            color: var(--fortium-dark);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .metric-label {
-            font-size: 0.8rem;
+        .why-choose p, .watchouts p {
+            font-size: 0.95rem;
             color: var(--fortium-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-top: 0.25rem;
+            line-height: 1.5;
         }
 
-        .risk-indicator {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            cursor: help;
+            text-decoration: underline dotted;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--fortium-dark);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
             font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            z-index: 10;
         }
 
-        .risk-low { background: #e6fffa; color: #047857; }
-        .risk-medium { background: #fef3c7; color: #d97706; }
-        .risk-high { background: #fee2e2; color: #dc2626; }
+        .tooltip:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
 
         /* Key Findings Section */
         .key-findings {
@@ -402,14 +468,9 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .market-map {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .category-metrics {
+            .category-badges {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.5rem;
             }
 
             .findings-grid {
@@ -431,10 +492,10 @@
     <section class="hero">
         <div class="hero-content">
             <h1>The 2025 Market Map of<br>Fractional CIO/CTO/CISO Leadership</h1>
-            <p class="hero-subtitle">Independent, evidence-based research — finally cutting through the noise of misleading "Top 10" lists.</p>
+            <p class="hero-subtitle">Independent, evidence-based research that finally clarifies a fragmented market.</p>
             <div class="hero-ctas">
                 <a href="#market-map" class="cta-primary">Explore the Map</a>
-                <a href="#download" class="cta-secondary">Download Full Research</a>
+                <a href="#download" class="cta-secondary">Download the Research</a>
             </div>
         </div>
     </section>
@@ -444,127 +505,187 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">The Market Map</h2>
-                <p class="section-subtitle">10 distinct categories of fractional executive providers, mapped by scale, transparency, and risk profile</p>
+                <p class="section-subtitle">10 distinct categories of fractional executive providers, mapped by <span class="tooltip" data-tooltip="Team size and coverage capability">scale</span>, <span class="tooltip" data-tooltip="Public visibility of team members and processes">transparency</span>, and <span class="tooltip" data-tooltip="Continuity and operational risk factors">risk</span> profile</p>
             </div>
 
             <div class="market-map">
-                <!-- Fortium Partners -->
+                <!-- 1. Fortium Partners -->
                 <div class="market-category" data-category="fortium">
+                    <p class="category-eyebrow">Large-Scale Pure-Play (U.S.)</p>
                     <h3 class="category-title">Fortium Partners</h3>
-                    <p class="category-subtitle">Large-Scale Pure-Play</p>
                     <p class="category-description">The only large-scale, pure-play fractional executive firm in the U.S. market with dedicated CIO, CTO, and CISO specialists.</p>
-                    <div class="category-metrics">
-                        <div class="metric">
-                            <span class="metric-value">50+</span>
-                            <span class="metric-label">Bench Size</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">100%</span>
-                            <span class="metric-label">Transparency</span>
-                        </div>
-                        <div class="metric">
-                            <span class="risk-indicator risk-low">Low Risk</span>
-                        </div>
+                    <ul class="category-badges">
+                        <li><span class="badge-label">Scale:</span> 180+ named CIO/CTO/CISO partners</li>
+                        <li><span class="badge-label">Transparency:</span> High (public bios, named bench)</li>
+                        <li><span class="badge-label">Risk:</span> Low (bench backups, national coverage)</li>
+                    </ul>
+                    <div class="why-choose">
+                        <p><strong>Why choose:</strong> Continuity, depth, and speed for ongoing or mission-critical leadership.</p>
+                    </div>
+                    <div class="watchouts">
+                        <p><strong>Watchouts:</strong> Premium vs. networks/marketplaces; still overkill for very tiny footprints.</p>
                     </div>
                 </div>
 
-                <!-- Independent Fractionals -->
+                <!-- 2. Independent Fractionals -->
                 <div class="market-category" data-category="independents">
+                    <p class="category-eyebrow">Solo Practitioners</p>
                     <h3 class="category-title">Independent Fractionals</h3>
-                    <p class="category-subtitle">Solo Practitioners</p>
                     <p class="category-description">Individual consultants operating independently. Largest segment by volume but carries inherent continuity and capacity risks.</p>
-                    <div class="category-metrics">
-                        <div class="metric">
-                            <span class="metric-value">1000+</span>
-                            <span class="metric-label">Market Size</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">Variable</span>
-                            <span class="metric-label">Transparency</span>
-                        </div>
-                        <div class="metric">
-                            <span class="risk-indicator risk-high">High Risk</span>
-                        </div>
+                    <ul class="category-badges">
+                        <li><span class="badge-label">Scale:</span> Hundreds+ in the U.S. (aggregate)</li>
+                        <li><span class="badge-label">Transparency:</span> Variable (LinkedIn/refs)</li>
+                        <li><span class="badge-label">Risk:</span> High (single-person continuity, capacity constraints)</li>
+                    </ul>
+                    <div class="why-choose">
+                        <p><strong>Why choose:</strong> Cost flexibility, direct rapport with the individual.</p>
+                    </div>
+                    <div class="watchouts">
+                        <p><strong>Watchouts:</strong> Backfill/coverage; knowledge concentration in one person.</p>
                     </div>
                 </div>
 
-                <!-- Freeman Clarke -->
+                <!-- 3. Freeman Clarke -->
                 <div class="market-category" data-category="freeman-clarke">
+                    <p class="category-eyebrow">Pure-Play (UK-Dominant; small U.S. bench)</p>
                     <h3 class="category-title">Freeman Clarke</h3>
-                    <p class="category-subtitle">UK-Dominant, Limited U.S.</p>
                     <p class="category-description">UK-based firm with strong European presence but minimal U.S. bench depth and market understanding.</p>
-                    <div class="category-metrics">
-                        <div class="metric">
-                            <span class="metric-value">5-10</span>
-                            <span class="metric-label">U.S. Bench</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">High</span>
-                            <span class="metric-label">Transparency</span>
-                        </div>
-                        <div class="metric">
-                            <span class="risk-indicator risk-medium">Medium Risk</span>
-                        </div>
+                    <ul class="category-badges">
+                        <li><span class="badge-label">Scale:</span> 100+ UK principals; ~14 in U.S.</li>
+                        <li><span class="badge-label">Transparency:</span> High (named bios)</li>
+                        <li><span class="badge-label">Risk:</span> Medium (limited U.S. coverage)</li>
+                    </ul>
+                    <div class="why-choose">
+                        <p><strong>Why choose:</strong> Credible UK/Europe coverage; structured fractional model.</p>
+                    </div>
+                    <div class="watchouts">
+                        <p><strong>Watchouts:</strong> U.S. bench depth and geography.</p>
                     </div>
                 </div>
 
-                <!-- Regional Boutiques -->
+                <!-- 4. Regional Boutiques -->
                 <div class="market-category" data-category="boutiques">
-                    <h3 class="category-title">Regional Boutiques</h3>
-                    <p class="category-subtitle">Credible but Limited Scale</p>
-                    <p class="category-description">High-quality regional firms with strong local expertise but limited geographic reach and bench depth.</p>
-                    <div class="category-metrics">
-                        <div class="metric">
-                            <span class="metric-value">5-15</span>
-                            <span class="metric-label">Typical Bench</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">High</span>
-                            <span class="metric-label">Quality</span>
-                        </div>
-                        <div class="metric">
-                            <span class="risk-indicator risk-medium">Medium Risk</span>
-                        </div>
+                    <p class="category-eyebrow">Regional Pure-Play Firms</p>
+                    <h3 class="category-title">Boutique Pure-Plays</h3>
+                    <p class="category-description">High-quality regional firms like Stratafusion and CIOPS with strong local expertise but limited geographic reach and bench depth.</p>
+                    <ul class="category-badges">
+                        <li><span class="badge-label">Scale:</span> ~25 combined (named leaders)</li>
+                        <li><span class="badge-label">Transparency:</span> High (named bios)</li>
+                        <li><span class="badge-label">Risk:</span> Medium (regional capacity limits)</li>
+                    </ul>
+                    <div class="why-choose">
+                        <p><strong>Why choose:</strong> Veteran leaders, hands-on depth, strong local context.</p>
+                    </div>
+                    <div class="watchouts">
+                        <p><strong>Watchouts:</strong> Limited bench for rapid swaps or multi-site coverage.</p>
                     </div>
                 </div>
 
-                <!-- MSP vCIOs -->
+                <!-- 5. TechCXO -->
+                <div class="market-category" data-category="techcxo">
+                    <p class="category-eyebrow">Multi-Role Exec Services (tech is one practice)</p>
+                    <h3 class="category-title">TechCXO</h3>
+                    <p class="category-description">Multi-disciplinary executive services firm where technology leadership is one practice among finance, operations, and other C-suite functions.</p>
+                    <ul class="category-badges">
+                        <li><span class="badge-label">Scale:</span> 120+ partners total; tech leadership is a subset</li>
+                        <li><span class="badge-label">Transparency:</span> High (public partner list)</li>
+                        <li><span class="badge-label">Risk:</span> Medium (tech depth smaller than finance/ops)</li>
+                    </ul>
+                    <div class="why-choose">
+                        <p><strong>Why choose:</strong> One-stop shop if you may also need CFO/COO.</p>
+                    </div>
+                    <div class="watchouts">
+                        <p><strong>Watchouts:</strong> Ensure proposed tech leader has true CIO/CTO/CISO pedigree.</p>
+                    </div>
+                </div>
+
+                <!-- 6. Multi-Role Interim Networks -->
+                <div class="market-category" data-category="interim-networks">
+                    <p class="category-eyebrow">Brokered Networks Across All C-Suite</p>
+                    <h3 class="category-title">Multi-Role Interim Networks</h3>
+                    <p class="category-description">Brokered networks like InterimExecs and Cerius that span all C-suite functions with CIO/CTO as a subset of their broader executive placement services.</p>
+                    <ul class="category-badges">
+                        <li><span class="badge-label">Scale:</span> Large networks; CIO/CTO subset varies</li>
+                        <li><span class="badge-label">Transparency:</span> Low (no public named rosters)</li>
+                        <li><span class="badge-label">Risk:</span> Medium-High (opaque pipeline; availability dependent)</li>
+                    </ul>
+                    <div class="why-choose">
+                        <p><strong>Why choose:</strong> Fast shortlists; breadth across functions.</p>
+                    </div>
+                    <div class="watchouts">
+                        <p><strong>Watchouts:</strong> Visibility into who you'll get; bench vs. "we'll find someone."</p>
+                    </div>
+                </div>
+
+                <!-- 7. Retained Search Hybrids -->
+                <div class="market-category" data-category="search-hybrids">
+                    <p class="category-eyebrow">Search-Led Interim/Fractional</p>
+                    <h3 class="category-title">Retained Search Hybrids</h3>
+                    <p class="category-description">Search-led firms like CIO Partners offering interim/fractional services as a bridge to permanent placement, with economics often skewed toward full-time hires.</p>
+                    <ul class="category-badges">
+                        <li><span class="badge-label">Scale:</span> Large candidate databases; ad-hoc interim</li>
+                        <li><span class="badge-label">Transparency:</span> Medium (process visible; candidate names post-intake)</li>
+                        <li><span class="badge-label">Risk:</span> Medium (incentives skew to permanent placement)</li>
+                    </ul>
+                    <div class="why-choose">
+                        <p><strong>Why choose:</strong> Interim now + path to full-time via search.</p>
+                    </div>
+                    <div class="watchouts">
+                        <p><strong>Watchouts:</strong> Economics for longer fractional; ensure you're not steered to perm.</p>
+                    </div>
+                </div>
+
+                <!-- 8. Talent Marketplaces -->
+                <div class="market-category" data-category="marketplaces">
+                    <p class="category-eyebrow">Curated Platforms of Independents</p>
+                    <h3 class="category-title">Talent Marketplaces</h3>
+                    <p class="category-description">Curated platforms like BTG and Toptal that aggregate independent practitioners with varying quality control and matching processes.</p>
+                    <ul class="category-badges">
+                        <li><span class="badge-label">Scale:</span> Big networks; quality varies by match</li>
+                        <li><span class="badge-label">Transparency:</span> Medium (profiles post-intake)</li>
+                        <li><span class="badge-label">Risk:</span> Medium-High (continuity rests on individual)</li>
+                    </ul>
+                    <div class="why-choose">
+                        <p><strong>Why choose:</strong> Speed, breadth, flexible trials.</p>
+                    </div>
+                    <div class="watchouts">
+                        <p><strong>Watchouts:</strong> You must actively vet; limited institutional backup.</p>
+                    </div>
+                </div>
+
+                <!-- 9. Consulting Firms' vCIO -->
+                <div class="market-category" data-category="consulting-vcio">
+                    <p class="category-eyebrow">Project-Anchored Fractional</p>
+                    <h3 class="category-title">Consulting Firms' vCIO</h3>
+                    <p class="category-description">Traditional consulting firms like RSM and Crosslake offering fractional CIO services, often anchored to project work with methodology-driven approaches.</p>
+                    <ul class="category-badges">
+                        <li><span class="badge-label">Scale:</span> Firm consultants/contractors; not named publicly as a bench</li>
+                        <li><span class="badge-label">Transparency:</span> Low (people not listed)</li>
+                        <li><span class="badge-label">Risk:</span> Medium (methodology fit; project upsell incentives)</li>
+                    </ul>
+                    <div class="why-choose">
+                        <p><strong>Why choose:</strong> If you're already engaging them for adjacent projects.</p>
+                    </div>
+                    <div class="watchouts">
+                        <p><strong>Watchouts:</strong> Independence; ensure strategy isn't vendor/project-driven.</p>
+                    </div>
+                </div>
+
+                <!-- 10. MSP/MSSP vCIO -->
                 <div class="market-category" data-category="msp-vcios">
-                    <h3 class="category-title">MSP vCIOs</h3>
-                    <p class="category-subtitle">The vCIO Trap</p>
-                    <p class="category-description">Managed Service Providers offering "virtual CIO" services. Inherent conflict of interest - selling both strategy and implementation.</p>
-                    <div class="category-metrics">
-                        <div class="metric">
-                            <span class="metric-value">1000+</span>
-                            <span class="metric-label">Providers</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">Low</span>
-                            <span class="metric-label">Independence</span>
-                        </div>
-                        <div class="metric">
-                            <span class="risk-indicator risk-high">High Risk</span>
-                        </div>
+                    <p class="category-eyebrow">Managed Services Add-On</p>
+                    <h3 class="category-title">MSP/MSSP "vCIO/vCISO"</h3>
+                    <p class="category-description">Managed Service Providers offering "virtual CIO/CISO" services as an add-on to their implementation services, creating inherent conflicts of interest.</p>
+                    <ul class="category-badges">
+                        <li><span class="badge-label">Scale:</span> Thousands of providers</li>
+                        <li><span class="badge-label">Transparency:</span> Low-Medium (named if you're a client)</li>
+                        <li><span class="badge-label">Risk:</span> High (inherent conflict: sells both advice & implementation)</li>
+                    </ul>
+                    <div class="why-choose">
+                        <p><strong>Why choose:</strong> Lowest cost, basic planning tied to operations.</p>
                     </div>
-                </div>
-
-                <!-- Big 4 Consulting -->
-                <div class="market-category" data-category="big4">
-                    <h3 class="category-title">Big 4 Consulting</h3>
-                    <p class="category-subtitle">Project-Based, High Cost</p>
-                    <p class="category-description">Traditional consulting firms offering fractional services as a side business. High cost, limited fractional expertise.</p>
-                    <div class="category-metrics">
-                        <div class="metric">
-                            <span class="metric-value">$500K+</span>
-                            <span class="metric-label">Typical Cost</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-value">Low</span>
-                            <span class="metric-label">Fractional Focus</span>
-                        </div>
-                        <div class="metric">
-                            <span class="risk-indicator risk-medium">Medium Risk</span>
-                        </div>
+                    <div class="watchouts">
+                        <p><strong>Watchouts:</strong> Independence, executive caliber, and strategic scope.</p>
                     </div>
                 </div>
             </div>
@@ -582,38 +703,38 @@
             <div class="findings-grid">
                 <div class="finding-card">
                     <div class="finding-number">01</div>
-                    <h3 class="finding-title">Only One Pure-Play at Scale</h3>
-                    <p>Fortium Partners is the only large-scale, pure-play fractional executive firm in the U.S. market, with dedicated CIO/CTO/CISO specialists.</p>
+                    <h3 class="finding-title">Only one large-scale U.S. pure-play</h3>
+                    <p>Fortium Partners with 180+ named leaders is the sole large-scale, pure-play fractional executive firm focused exclusively on the U.S. market.</p>
                 </div>
 
                 <div class="finding-card">
                     <div class="finding-number">02</div>
-                    <h3 class="finding-title">Independents Carry Continuity Risk</h3>
-                    <p>While independents represent the largest segment by volume, they inherently carry higher continuity, capacity, and knowledge transfer risks.</p>
+                    <h3 class="finding-title">Independents = biggest pool</h3>
+                    <p>Individual practitioners represent the largest segment by volume but carry the highest continuity risk for mission-critical leadership roles.</p>
                 </div>
 
                 <div class="finding-card">
                     <div class="finding-number">03</div>
-                    <h3 class="finding-title">MSP vCIOs: Fox Guarding Henhouse</h3>
-                    <p>Managed Service Providers offering "virtual CIO" services create inherent conflicts of interest by selling both strategy and implementation.</p>
+                    <h3 class="finding-title">Freeman Clarke: UK strength, small U.S. roster</h3>
+                    <p>Despite strong UK presence with 100+ principals, Freeman Clarke maintains only ~14 practitioners in select U.S. geographies.</p>
                 </div>
 
                 <div class="finding-card">
                     <div class="finding-number">04</div>
-                    <h3 class="finding-title">Freeman Clarke: UK-Centric</h3>
-                    <p>Despite marketing presence, Freeman Clarke maintains minimal U.S. bench depth and limited understanding of American market dynamics.</p>
+                    <h3 class="finding-title">Boutiques deliver quality regionally</h3>
+                    <p>Regional pure-plays like Stratafusion and CIOPS provide veteran leadership but bench limits matter for scaling or geographic flexibility.</p>
                 </div>
 
                 <div class="finding-card">
                     <div class="finding-number">05</div>
-                    <h3 class="finding-title">Regional Excellence, Limited Scale</h3>
-                    <p>Boutique firms deliver high-quality work within their regions but lack the geographic reach and bench depth for national engagements.</p>
+                    <h3 class="finding-title">Multi-role models & marketplaces</h3>
+                    <p>TechCXO, interim networks, and talent marketplaces can work well but require deeper vetting to ensure technology expertise depth.</p>
                 </div>
 
                 <div class="finding-card">
                     <div class="finding-number">06</div>
-                    <h3 class="finding-title">Big 4: Wrong Model</h3>
-                    <p>Traditional consulting firms applying project-based methodologies to fractional engagements results in poor fit and excessive costs.</p>
+                    <h3 class="finding-title">MSP/MSSP vCIO = built-in conflict</h3>
+                    <p>When managed service providers sell both strategic advice and implementation services, independence and objectivity are compromised.</p>
                 </div>
             </div>
         </div>
@@ -630,26 +751,26 @@
             <div class="decision-steps">
                 <div class="decision-step">
                     <div class="step-number">1</div>
-                    <h3>Assess Scale Needs</h3>
-                    <p>Do you need ongoing support, multiple disciplines, or geographic flexibility? If yes, avoid solo practitioners.</p>
+                    <h3>Scale Needs</h3>
+                    <p>If you need backups, multi-site coverage, or multiple disciplines, avoid single-person models.</p>
                 </div>
 
                 <div class="decision-step">
                     <div class="step-number">2</div>
-                    <h3>Evaluate Risk Tolerance</h3>
-                    <p>Can your business handle continuity disruption? High-risk tolerance allows for independents; low risk requires institutional providers.</p>
+                    <h3>Risk Tolerance</h3>
+                    <p>If disruption is unacceptable, choose a firm with a real bench.</p>
                 </div>
 
                 <div class="decision-step">
                     <div class="step-number">3</div>
-                    <h3>Check for Conflicts</h3>
-                    <p>Are they selling you both strategy and implementation? If yes, walk away. True advisory requires independence.</p>
+                    <h3>Independence Check</h3>
+                    <p>If they profit from what they recommend, it's not advisory.</p>
                 </div>
 
                 <div class="decision-step">
                     <div class="step-number">4</div>
-                    <h3>Verify Market Fit</h3>
-                    <p>Do they understand your market, regulations, and competitive landscape? Geographic expertise matters.</p>
+                    <h3>Market Fit</h3>
+                    <p>Choose leaders with your industry, regulatory, and size pattern experience.</p>
                 </div>
             </div>
         </div>
@@ -666,20 +787,20 @@
             <div class="commentary-grid">
                 <div class="commentary-card">
                     <h3 class="commentary-title">Why Most "Top 10" Lists Mislead</h3>
-                    <p>Traditional rankings ignore the fundamental differences between provider types, business models, and risk profiles. A solo practitioner and a 50-person firm aren't comparable alternatives — they serve different needs and carry vastly different risk profiles.</p>
-                    <p>This market map categorizes providers by their actual operational model, scale, and risk characteristics rather than arbitrary "ranking" criteria.</p>
+                    <p>They mix solo consultants, firms, marketplaces, and MSP add-ons as if they're apples-to-apples. They aren't. Our map compares like with like.</p>
+                    <p>A solo practitioner and a 180-person firm serve different needs and carry vastly different risk profiles. Smart buyers understand these distinctions.</p>
                 </div>
 
                 <div class="commentary-card">
-                    <h3 class="commentary-title">The Real Risk of Solo Fractionals</h3>
-                    <p>Individual practitioners can be exceptional, but they carry inherent structural risks: vacation coverage, knowledge concentration, capacity constraints, and succession planning.</p>
-                    <p>For mission-critical technology leadership, these risks compound over time. Smart buyers either accept these limitations or choose institutional providers with bench depth.</p>
+                    <h3 class="commentary-title">The Continuity Trap</h3>
+                    <p>Great individuals still get sick, hired, or overbooked. Without a bench, continuity and knowledge transfer are fragile.</p>
+                    <p>For mission-critical technology leadership, smart buyers either accept these limitations or choose institutional providers with bench depth.</p>
                 </div>
 
                 <div class="commentary-card">
                     <h3 class="commentary-title">Beware the vCIO Trap</h3>
+                    <p>When strategy is sold by your implementer, incentives diverge from independent leadership.</p>
                     <p>MSPs selling "virtual CIO" services face an irreconcilable conflict: they profit from implementing technology solutions they recommend as strategic advisors.</p>
-                    <p>True fractional CIOs maintain independence from implementation vendors. If your "advisor" is also selling you servers, software, or services, you're getting sales advice, not strategic counsel.</p>
                 </div>
             </div>
         </div>
@@ -690,28 +811,28 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Help Keep the Map Current</h2>
-                <p class="section-subtitle">This market map improves through community input. Submit corrections, additions, or insights to maintain accuracy.</p>
+                <p class="section-subtitle">Submit updates, corrections, or new providers. We validate quarterly and refresh the map.</p>
             </div>
 
-            <form class="community-form" id="communityForm">
+            <form class="community-form" id="communityForm" action="https://formspree.io/f/your-form-id" method="POST">
                 <div class="form-group">
                     <label class="form-label">Your Name</label>
-                    <input type="text" class="form-input" required>
+                    <input type="text" name="name" class="form-input" required>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-input" required>
+                    <input type="email" name="email" class="form-input" required>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Company/Organization</label>
-                    <input type="text" class="form-input">
+                    <input type="text" name="company" class="form-input">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Market Feedback</label>
-                    <textarea class="form-textarea" placeholder="Share corrections, missing providers, or market insights..." required></textarea>
+                    <textarea name="feedback" class="form-textarea" placeholder="Share corrections, missing providers, or market insights..." required></textarea>
                 </div>
 
                 <button type="submit" class="cta-primary">Submit Feedback</button>
@@ -747,21 +868,37 @@
         // Market category interaction
         document.querySelectorAll('.market-category').forEach(category => {
             category.addEventListener('click', function() {
-                // Add interactive behavior here
+                // Add click-to-expand behavior for mobile
+                if (window.innerWidth <= 768) {
+                    this.classList.toggle('expanded');
+                }
                 console.log('Category clicked:', this.dataset.category);
             });
         });
 
-        // Community form submission
+        // Form submission success message
         document.getElementById('communityForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your feedback! Your input helps keep the market map accurate and current.');
+            // Let Formspree handle the submission
+            setTimeout(() => {
+                alert('Thank you for your feedback! Your input helps keep the market map accurate and current.');
+            }, 100);
         });
 
         // Analytics tracking
         if (typeof _hsq !== 'undefined') {
             _hsq.push(['trackPageView']);
         }
+
+        // Track market map engagement
+        document.querySelectorAll('.market-category').forEach(category => {
+            category.addEventListener('mouseenter', function() {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'category_hover', {
+                        category_name: this.dataset.category
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
