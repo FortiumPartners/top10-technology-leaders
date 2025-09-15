@@ -32,6 +32,121 @@
     }
     </script>
 
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID', {
+            send_page_view: true,
+            allow_google_signals: true,
+            allow_ad_personalization_signals: true
+        });
+
+        gtag('event', 'page_view', {
+            page_title: 'Fractional Technology Leadership Market Map',
+            page_location: window.location.href,
+            content_group1: 'Market Map',
+            content_group2: 'Fractional Leadership',
+            content_group3: 'Landing Page'
+        });
+    </script>
+
+    <!-- HubSpot Tracking Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/HUBSPOT_PORTAL_ID.js"></script>
+
+    <!-- HubSpot Custom Tracking -->
+    <script>
+        var _hsq = _hsq || [];
+
+        _hsq.push(['setPath', '/market-map/fractional-technology-leadership']);
+        _hsq.push(['trackPageView', {
+            contentType: 'market-map',
+            industry: 'technology-leadership',
+            pageType: 'landing-page',
+            leadMagnet: 'fractional-cio-market-map'
+        }]);
+
+        // Track market map interactions
+        function trackProviderClick(providerName, category) {
+            _hsq.push(['trackEvent', {
+                id: 'provider_click',
+                value: {
+                    providerName: providerName,
+                    category: category,
+                    pageSection: 'market-map'
+                }
+            }]);
+
+            gtag('event', 'provider_interaction', {
+                event_category: 'market_map',
+                event_label: providerName,
+                value: category
+            });
+        }
+
+        function trackCTAClick(ctaType, destination) {
+            _hsq.push(['trackEvent', {
+                id: 'cta_click',
+                value: {
+                    ctaType: ctaType,
+                    destination: destination
+                }
+            }]);
+
+            gtag('event', 'cta_click', {
+                event_category: 'conversion',
+                event_label: ctaType,
+                value: destination
+            });
+        }
+
+        // Capture lead attribution
+        function captureLeadAttribution() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var attribution = {
+                utm_source: urlParams.get('utm_source') || 'direct',
+                utm_medium: urlParams.get('utm_medium') || 'none',
+                utm_campaign: urlParams.get('utm_campaign') || 'none',
+                utm_content: urlParams.get('utm_content') || 'none',
+                utm_term: urlParams.get('utm_term') || 'none',
+                referrer: document.referrer || 'direct',
+                landing_page: window.location.href
+            };
+
+            localStorage.setItem('leadAttribution', JSON.stringify(attribution));
+
+            _hsq.push(['trackEvent', {
+                id: 'lead_attribution_captured',
+                value: attribution
+            }]);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            captureLeadAttribution();
+
+            // Track research report button clicks
+            var researchButtons = document.querySelectorAll('[href*="research.html"], .research-link');
+            researchButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    trackCTAClick('research_report', 'research.html');
+                });
+            });
+
+            // Track market map toggle
+            var mapToggle = document.querySelector('.map-toggle-btn');
+            if (mapToggle) {
+                mapToggle.addEventListener('click', function() {
+                    _hsq.push(['trackEvent', {
+                        id: 'market_map_toggle',
+                        value: { action: 'toggle_providers' }
+                    }]);
+                });
+            }
+        });
+    </script>
+
     <style>
         /* Fortium Partners Design System */
         * { margin: 0; padding: 0; box-sizing: border-box; }

@@ -30,6 +30,252 @@
     }
     </script>
 
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID', {
+            // Enhanced ecommerce and conversion tracking
+            send_page_view: true,
+            allow_google_signals: true,
+            allow_ad_personalization_signals: true,
+            // Custom parameters for lead attribution
+            custom_map: {
+                'custom_parameter_1': 'source_medium',
+                'custom_parameter_2': 'content_type'
+            }
+        });
+
+        // Track content engagement
+        gtag('event', 'page_view', {
+            page_title: 'Fractional Technology Leadership Research',
+            page_location: window.location.href,
+            content_group1: 'Research Report',
+            content_group2: 'Fractional Leadership',
+            content_group3: 'Market Analysis'
+        });
+    </script>
+
+    <!-- HubSpot Tracking Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/HUBSPOT_PORTAL_ID.js"></script>
+
+    <!-- HubSpot Custom Tracking -->
+    <script>
+        // Initialize HubSpot tracking queue
+        var _hsq = _hsq || [];
+
+        // Track page view with custom properties
+        _hsq.push(['setPath', '/research/fractional-technology-leadership-market-map']);
+        _hsq.push(['trackPageView', {
+            contentType: 'research-report',
+            industry: 'technology-leadership',
+            wordCount: '23000',
+            reportType: 'market-analysis',
+            leadMagnet: 'fractional-cio-research'
+        }]);
+
+        // Track content consumption milestones
+        var scrollMilestones = [25, 50, 75, 90];
+        var milestonesTracked = [];
+
+        function trackScrollProgress() {
+            var scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+
+            scrollMilestones.forEach(function(milestone) {
+                if (scrollPercent >= milestone && milestonesTracked.indexOf(milestone) === -1) {
+                    milestonesTracked.push(milestone);
+
+                    // HubSpot event
+                    _hsq.push(['trackEvent', {
+                        id: 'content_engagement',
+                        value: {
+                            scrollPercentage: milestone,
+                            contentType: 'research-report',
+                            pageSection: getCurrentSection()
+                        }
+                    }]);
+
+                    // GA4 event
+                    gtag('event', 'scroll', {
+                        event_category: 'engagement',
+                        event_label: 'research_report_scroll',
+                        value: milestone,
+                        custom_parameter_1: getCurrentSection()
+                    });
+                }
+            });
+        }
+
+        function getCurrentSection() {
+            var sections = document.querySelectorAll('h2[id]');
+            var scrollTop = window.pageYOffset + 100;
+            var currentSection = 'header';
+
+            sections.forEach(function(section) {
+                if (scrollTop >= section.offsetTop) {
+                    currentSection = section.id;
+                }
+            });
+
+            return currentSection;
+        }
+
+        // Track time on page milestones
+        var timeOnPageMilestones = [30, 60, 120, 300, 600]; // seconds
+        var timeTrackingStarted = Date.now();
+
+        timeOnPageMilestones.forEach(function(seconds) {
+            setTimeout(function() {
+                _hsq.push(['trackEvent', {
+                    id: 'time_on_page_milestone',
+                    value: {
+                        timeOnPage: seconds,
+                        contentType: 'research-report',
+                        currentSection: getCurrentSection()
+                    }
+                }]);
+
+                gtag('event', 'timing_complete', {
+                    name: 'research_report_engagement',
+                    value: seconds
+                });
+            }, seconds * 1000);
+        });
+
+        // Track document downloads and external link clicks
+        function trackDownload(downloadType, fileName) {
+            _hsq.push(['trackEvent', {
+                id: 'content_download',
+                value: {
+                    downloadType: downloadType,
+                    fileName: fileName,
+                    currentSection: getCurrentSection()
+                }
+            }]);
+
+            gtag('event', 'file_download', {
+                event_category: 'downloads',
+                event_label: downloadType,
+                value: fileName
+            });
+        }
+
+        function trackExternalLink(url, linkText) {
+            _hsq.push(['trackEvent', {
+                id: 'external_link_click',
+                value: {
+                    url: url,
+                    linkText: linkText,
+                    currentSection: getCurrentSection()
+                }
+            }]);
+
+            gtag('event', 'click', {
+                event_category: 'external_links',
+                event_label: url,
+                value: linkText
+            });
+        }
+
+        // Track navigation usage
+        function trackNavigation(action, target) {
+            _hsq.push(['trackEvent', {
+                id: 'navigation_interaction',
+                value: {
+                    action: action,
+                    target: target,
+                    currentSection: getCurrentSection()
+                }
+            }]);
+
+            gtag('event', 'navigation', {
+                event_category: 'ui_interaction',
+                event_label: action,
+                value: target
+            });
+        }
+    </script>
+
+    <!-- Lead Attribution Tracking -->
+    <script>
+        // Capture UTM parameters and referrer data for lead attribution
+        function captureLeadAttribution() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var attribution = {
+                utm_source: urlParams.get('utm_source') || 'direct',
+                utm_medium: urlParams.get('utm_medium') || 'none',
+                utm_campaign: urlParams.get('utm_campaign') || 'none',
+                utm_content: urlParams.get('utm_content') || 'none',
+                utm_term: urlParams.get('utm_term') || 'none',
+                referrer: document.referrer || 'direct',
+                landing_page: window.location.href,
+                timestamp: new Date().toISOString()
+            };
+
+            // Store in localStorage for form submissions
+            localStorage.setItem('leadAttribution', JSON.stringify(attribution));
+
+            // Send to HubSpot
+            _hsq.push(['trackEvent', {
+                id: 'lead_attribution_captured',
+                value: attribution
+            }]);
+
+            // Send to GA4
+            gtag('event', 'lead_attribution', {
+                event_category: 'marketing',
+                custom_parameter_1: attribution.utm_source + '/' + attribution.utm_medium,
+                custom_parameter_2: attribution.utm_campaign
+            });
+        }
+
+        // Initialize tracking when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            captureLeadAttribution();
+
+            // Set up scroll tracking
+            var scrollTimeout;
+            window.addEventListener('scroll', function() {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(trackScrollProgress, 100);
+            });
+
+            // Track PDF download button clicks
+            var pdfButtons = document.querySelectorAll('.pdf-download, [onclick*="print"]');
+            pdfButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    trackDownload('pdf', 'fractional-leadership-research-report.pdf');
+                });
+            });
+
+            // Track external citation links
+            var externalLinks = document.querySelectorAll('a[href^="http"]:not([href*="fortiumpartners.github.io"])');
+            externalLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    trackExternalLink(this.href, this.textContent);
+                });
+            });
+
+            // Track navigation interactions
+            var navLinks = document.querySelectorAll('.nav-link, .section-anchor');
+            navLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    var target = this.getAttribute('href') || this.getAttribute('data-section');
+                    trackNavigation('section_jump', target);
+                });
+            });
+
+            var navToggle = document.getElementById('navToggle');
+            if (navToggle) {
+                navToggle.addEventListener('click', function() {
+                    trackNavigation('toggle_navigation', 'floating_nav');
+                });
+            }
+        });
+    </script>
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
