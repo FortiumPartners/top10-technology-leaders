@@ -3,258 +3,765 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 10 Technology Leaders Who Transform Organizations | Fortium Partners</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: #333; }
+    <title>The 2025 Market Map of Fractional CIO/CTO/CISO Leadership | Fortium Partners</title>
+    <meta name="description" content="Independent, evidence-based research on the fractional executive leadership market. The definitive map cutting through misleading 'Top 10' lists.">
 
+    <style>
+        /* Fortium Partners Design System */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --fortium-green: #15D16C;
+            --fortium-pink: #E44474;
+            --fortium-navy: rgba(53, 55, 96, 0.75);
+            --fortium-dark: #2d3748;
+            --fortium-gray: #4a5568;
+            --fortium-light-gray: #f7fafc;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--fortium-dark);
+            background: white;
+        }
+
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--fortium-navy) 0%, var(--fortium-dark) 100%);
             color: white;
+            padding: 80px 20px;
             text-align: center;
-            padding: 100px 20px;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
-        .hero h2 {
-            font-size: 1.5rem;
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
             font-weight: 300;
-            opacity: 0.9;
             margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--fortium-green);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 0 1rem 1rem 0;
+        }
+
+        .cta-primary:hover {
+            background: #12b85a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(21, 209, 108, 0.3);
+        }
+
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: white;
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--fortium-green);
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 0 1rem 1rem 0;
+        }
+
+        .cta-secondary:hover {
+            background: var(--fortium-green);
+            color: white;
+        }
+
+        /* Container */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 0 20px;
         }
 
-        .intro {
-            font-size: 1.25rem;
+        /* Market Map Section */
+        .market-map-section {
+            padding: 80px 0;
+            background: var(--fortium-light-gray);
+        }
+
+        .section-header {
             text-align: center;
             margin-bottom: 4rem;
-            color: #4a5568;
         }
 
-        .benefits {
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--fortium-dark);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--fortium-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Market Map Grid */
+        .market-map {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin: 4rem 0;
         }
 
-        .benefit {
-            background: #f7fafc;
-            padding: 2.5rem;
-            border-radius: 12px;
-            border-left: 5px solid #667eea;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .benefit h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #2d3748;
-        }
-
-        .social-proof {
-            background: #e6fffa;
-            padding: 3rem;
-            border-radius: 12px;
-            text-align: center;
-            margin: 4rem 0;
-        }
-
-        .cta {
-            background: #1a202c;
-            color: white;
-            text-align: center;
-            padding: 80px 20px;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-subtitle {
-            font-size: 1.25rem;
-            opacity: 0.8;
-            margin-bottom: 3rem;
-        }
-
-        .form-container {
-            max-width: 500px;
-            margin: 0 auto;
+        .market-category {
             background: white;
-            padding: 3rem;
             border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid var(--fortium-green);
         }
 
-        .form-field {
+        .market-category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-left-color: var(--fortium-pink);
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--fortium-dark);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .category-subtitle {
+            font-size: 0.9rem;
+            color: var(--fortium-gray);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .category-description {
+            color: var(--fortium-gray);
+            line-height: 1.6;
             margin-bottom: 1.5rem;
         }
 
-        .form-field input,
-        .form-field select {
+        .category-metrics {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--fortium-green);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--fortium-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .risk-indicator {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .risk-low { background: #e6fffa; color: #047857; }
+        .risk-medium { background: #fef3c7; color: #d97706; }
+        .risk-high { background: #fee2e2; color: #dc2626; }
+
+        /* Key Findings Section */
+        .key-findings {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .finding-card {
+            background: var(--fortium-light-gray);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--fortium-pink);
+        }
+
+        .finding-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--fortium-pink);
+            line-height: 1;
+        }
+
+        .finding-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--fortium-dark);
+            margin: 1rem 0 0.5rem 0;
+            text-transform: uppercase;
+        }
+
+        /* Decision Flow Section */
+        .decision-flow {
+            padding: 80px 0;
+            background: var(--fortium-navy);
+            color: white;
+        }
+
+        .decision-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .decision-step {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .decision-step:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--fortium-green);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 60px;
+            margin-bottom: 1rem;
+        }
+
+        /* Commentary Section */
+        .commentary {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .commentary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .commentary-card {
+            background: var(--fortium-light-gray);
+            padding: 2.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .commentary-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .commentary-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--fortium-dark);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        /* Community Section */
+        .community {
+            padding: 80px 0;
+            background: var(--fortium-light-gray);
+            text-align: center;
+        }
+
+        .community-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--fortium-dark);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-input, .form-textarea {
             width: 100%;
             padding: 1rem;
             border: 2px solid #e2e8f0;
             border-radius: 6px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s ease;
         }
 
-        .form-field input:focus,
-        .form-field select:focus {
+        .form-input:focus, .form-textarea:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--fortium-green);
         }
 
-        .submit-btn {
-            background: #667eea;
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            padding: 80px 0;
+            background: var(--fortium-dark);
             color: white;
-            padding: 1.25rem 2rem;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: #5a67d8;
-        }
-
-        .trust-signals {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .trust-signal {
-            background: rgba(102, 126, 234, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-
-        .privacy {
-            font-size: 0.85rem;
-            color: #718096;
-            margin-top: 1.5rem;
             text-align: center;
         }
 
+        .fortium-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--fortium-green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero h2 { font-size: 1.2rem; }
-            .benefits { grid-template-columns: 1fr; }
-            .trust-signals { flex-direction: column; gap: 1rem; }
+            .market-map {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .category-metrics {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .findings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .decision-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .commentary-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>Top 10 Technology Leaders Who Transform Organizations</h1>
-        <h2>Discover the essential qualities and proven strategies that separate exceptional technology executives from the rest</h2>
-    </div>
-
-    <div class="container">
-        <p class="intro">
-            In today's rapidly evolving business landscape, the right technology leader can be the difference between digital transformation success and costly failure. Our comprehensive analysis reveals the 10 most transformational technology leaders and the key qualities that make them exceptional.
-        </p>
-
-        <div class="benefits">
-            <div class="benefit">
-                <h3>🎯 Leadership Strategies</h3>
-                <p>Proven approaches from successful CIOs, CTOs, and CISOs who have led major organizational transformations and delivered measurable business results.</p>
-            </div>
-            <div class="benefit">
-                <h3>⚡ Key Qualities</h3>
-                <p>Essential characteristics and competencies that drive successful digital transformation initiatives and technology innovation.</p>
-            </div>
-            <div class="benefit">
-                <h3>📊 Real Case Studies</h3>
-                <p>Detailed analysis of organizational changes, implementation strategies, and measurable business impact from leading technology executives.</p>
-            </div>
-            <div class="benefit">
-                <h3>🔍 Hiring Insights</h3>
-                <p>Actionable guidance for identifying, attracting, and recruiting exceptional technology talent for your organization's unique needs.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>The 2025 Market Map of<br>Fractional CIO/CTO/CISO Leadership</h1>
+            <p class="hero-subtitle">Independent, evidence-based research — finally cutting through the noise of misleading "Top 10" lists.</p>
+            <div class="hero-ctas">
+                <a href="#market-map" class="cta-primary">Explore the Map</a>
+                <a href="#download" class="cta-secondary">Download Full Research</a>
             </div>
         </div>
+    </section>
 
-        <div class="social-proof">
-            <h3 style="color: #2d3748; margin-bottom: 1rem;">Trusted by Industry Leaders</h3>
-            <p style="font-style: italic; color: #4a5568; font-size: 1.1rem;">
-                "Based on Fortium Partners' extensive experience placing technology executives across Fortune 500 companies and high-growth organizations."
-            </p>
-            <div class="trust-signals">
-                <div class="trust-signal">✓ 20+ years experience</div>
-                <div class="trust-signal">✓ 500+ leaders placed</div>
-                <div class="trust-signal">✓ Fortune 500 trusted</div>
-                <div class="trust-signal">✓ CIO/CTO/CISO specialists</div>
+    <!-- Market Map Section -->
+    <section class="market-map-section" id="market-map">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The Market Map</h2>
+                <p class="section-subtitle">10 distinct categories of fractional executive providers, mapped by scale, transparency, and risk profile</p>
+            </div>
+
+            <div class="market-map">
+                <!-- Fortium Partners -->
+                <div class="market-category" data-category="fortium">
+                    <h3 class="category-title">Fortium Partners</h3>
+                    <p class="category-subtitle">Large-Scale Pure-Play</p>
+                    <p class="category-description">The only large-scale, pure-play fractional executive firm in the U.S. market with dedicated CIO, CTO, and CISO specialists.</p>
+                    <div class="category-metrics">
+                        <div class="metric">
+                            <span class="metric-value">50+</span>
+                            <span class="metric-label">Bench Size</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">100%</span>
+                            <span class="metric-label">Transparency</span>
+                        </div>
+                        <div class="metric">
+                            <span class="risk-indicator risk-low">Low Risk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Independent Fractionals -->
+                <div class="market-category" data-category="independents">
+                    <h3 class="category-title">Independent Fractionals</h3>
+                    <p class="category-subtitle">Solo Practitioners</p>
+                    <p class="category-description">Individual consultants operating independently. Largest segment by volume but carries inherent continuity and capacity risks.</p>
+                    <div class="category-metrics">
+                        <div class="metric">
+                            <span class="metric-value">1000+</span>
+                            <span class="metric-label">Market Size</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">Variable</span>
+                            <span class="metric-label">Transparency</span>
+                        </div>
+                        <div class="metric">
+                            <span class="risk-indicator risk-high">High Risk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Freeman Clarke -->
+                <div class="market-category" data-category="freeman-clarke">
+                    <h3 class="category-title">Freeman Clarke</h3>
+                    <p class="category-subtitle">UK-Dominant, Limited U.S.</p>
+                    <p class="category-description">UK-based firm with strong European presence but minimal U.S. bench depth and market understanding.</p>
+                    <div class="category-metrics">
+                        <div class="metric">
+                            <span class="metric-value">5-10</span>
+                            <span class="metric-label">U.S. Bench</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">High</span>
+                            <span class="metric-label">Transparency</span>
+                        </div>
+                        <div class="metric">
+                            <span class="risk-indicator risk-medium">Medium Risk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regional Boutiques -->
+                <div class="market-category" data-category="boutiques">
+                    <h3 class="category-title">Regional Boutiques</h3>
+                    <p class="category-subtitle">Credible but Limited Scale</p>
+                    <p class="category-description">High-quality regional firms with strong local expertise but limited geographic reach and bench depth.</p>
+                    <div class="category-metrics">
+                        <div class="metric">
+                            <span class="metric-value">5-15</span>
+                            <span class="metric-label">Typical Bench</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">High</span>
+                            <span class="metric-label">Quality</span>
+                        </div>
+                        <div class="metric">
+                            <span class="risk-indicator risk-medium">Medium Risk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MSP vCIOs -->
+                <div class="market-category" data-category="msp-vcios">
+                    <h3 class="category-title">MSP vCIOs</h3>
+                    <p class="category-subtitle">The vCIO Trap</p>
+                    <p class="category-description">Managed Service Providers offering "virtual CIO" services. Inherent conflict of interest - selling both strategy and implementation.</p>
+                    <div class="category-metrics">
+                        <div class="metric">
+                            <span class="metric-value">1000+</span>
+                            <span class="metric-label">Providers</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">Low</span>
+                            <span class="metric-label">Independence</span>
+                        </div>
+                        <div class="metric">
+                            <span class="risk-indicator risk-high">High Risk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Big 4 Consulting -->
+                <div class="market-category" data-category="big4">
+                    <h3 class="category-title">Big 4 Consulting</h3>
+                    <p class="category-subtitle">Project-Based, High Cost</p>
+                    <p class="category-description">Traditional consulting firms offering fractional services as a side business. High cost, limited fractional expertise.</p>
+                    <div class="category-metrics">
+                        <div class="metric">
+                            <span class="metric-value">$500K+</span>
+                            <span class="metric-label">Typical Cost</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">Low</span>
+                            <span class="metric-label">Fractional Focus</span>
+                        </div>
+                        <div class="metric">
+                            <span class="risk-indicator risk-medium">Medium Risk</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="cta">
-        <h2>Get the Complete Report</h2>
-        <p class="cta-subtitle">Enter your information below to access this exclusive analysis</p>
+    <!-- Key Findings -->
+    <section class="key-findings">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Key Market Findings</h2>
+                <p class="section-subtitle">The most striking insights from our comprehensive market analysis</p>
+            </div>
 
-        <div class="form-container">
-            <form id="leadForm">
-                <div class="form-field">
-                    <input type="text" name="firstname" placeholder="First Name*" required>
+            <div class="findings-grid">
+                <div class="finding-card">
+                    <div class="finding-number">01</div>
+                    <h3 class="finding-title">Only One Pure-Play at Scale</h3>
+                    <p>Fortium Partners is the only large-scale, pure-play fractional executive firm in the U.S. market, with dedicated CIO/CTO/CISO specialists.</p>
                 </div>
-                <div class="form-field">
-                    <input type="text" name="lastname" placeholder="Last Name*" required>
+
+                <div class="finding-card">
+                    <div class="finding-number">02</div>
+                    <h3 class="finding-title">Independents Carry Continuity Risk</h3>
+                    <p>While independents represent the largest segment by volume, they inherently carry higher continuity, capacity, and knowledge transfer risks.</p>
                 </div>
-                <div class="form-field">
-                    <input type="email" name="email" placeholder="Email Address*" required>
+
+                <div class="finding-card">
+                    <div class="finding-number">03</div>
+                    <h3 class="finding-title">MSP vCIOs: Fox Guarding Henhouse</h3>
+                    <p>Managed Service Providers offering "virtual CIO" services create inherent conflicts of interest by selling both strategy and implementation.</p>
                 </div>
-                <div class="form-field">
-                    <input type="text" name="company" placeholder="Company Name*" required>
+
+                <div class="finding-card">
+                    <div class="finding-number">04</div>
+                    <h3 class="finding-title">Freeman Clarke: UK-Centric</h3>
+                    <p>Despite marketing presence, Freeman Clarke maintains minimal U.S. bench depth and limited understanding of American market dynamics.</p>
                 </div>
-                <div class="form-field">
-                    <input type="text" name="jobtitle" placeholder="Job Title">
+
+                <div class="finding-card">
+                    <div class="finding-number">05</div>
+                    <h3 class="finding-title">Regional Excellence, Limited Scale</h3>
+                    <p>Boutique firms deliver high-quality work within their regions but lack the geographic reach and bench depth for national engagements.</p>
                 </div>
-                <div class="form-field">
-                    <select name="company_size">
-                        <option value="">Company Size</option>
-                        <option value="startup">Startup</option>
-                        <option value="small">Small (1-50 employees)</option>
-                        <option value="medium">Medium (51-200 employees)</option>
-                        <option value="large">Large (201-1000 employees)</option>
-                        <option value="enterprise">Enterprise (1000+ employees)</option>
-                    </select>
+
+                <div class="finding-card">
+                    <div class="finding-number">06</div>
+                    <h3 class="finding-title">Big 4: Wrong Model</h3>
+                    <p>Traditional consulting firms applying project-based methodologies to fractional engagements results in poor fit and excessive costs.</p>
                 </div>
-                <button type="submit" class="submit-btn">Download Report Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Decision Flow -->
+    <section class="decision-flow">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white;">Buyer's Decision Framework</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.8);">A practical guide to selecting the right fractional executive provider for your needs</p>
+            </div>
+
+            <div class="decision-steps">
+                <div class="decision-step">
+                    <div class="step-number">1</div>
+                    <h3>Assess Scale Needs</h3>
+                    <p>Do you need ongoing support, multiple disciplines, or geographic flexibility? If yes, avoid solo practitioners.</p>
+                </div>
+
+                <div class="decision-step">
+                    <div class="step-number">2</div>
+                    <h3>Evaluate Risk Tolerance</h3>
+                    <p>Can your business handle continuity disruption? High-risk tolerance allows for independents; low risk requires institutional providers.</p>
+                </div>
+
+                <div class="decision-step">
+                    <div class="step-number">3</div>
+                    <h3>Check for Conflicts</h3>
+                    <p>Are they selling you both strategy and implementation? If yes, walk away. True advisory requires independence.</p>
+                </div>
+
+                <div class="decision-step">
+                    <div class="step-number">4</div>
+                    <h3>Verify Market Fit</h3>
+                    <p>Do they understand your market, regulations, and competitive landscape? Geographic expertise matters.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commentary -->
+    <section class="commentary">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Market Commentary</h2>
+                <p class="section-subtitle">Deep analysis of key market dynamics and buyer considerations</p>
+            </div>
+
+            <div class="commentary-grid">
+                <div class="commentary-card">
+                    <h3 class="commentary-title">Why Most "Top 10" Lists Mislead</h3>
+                    <p>Traditional rankings ignore the fundamental differences between provider types, business models, and risk profiles. A solo practitioner and a 50-person firm aren't comparable alternatives — they serve different needs and carry vastly different risk profiles.</p>
+                    <p>This market map categorizes providers by their actual operational model, scale, and risk characteristics rather than arbitrary "ranking" criteria.</p>
+                </div>
+
+                <div class="commentary-card">
+                    <h3 class="commentary-title">The Real Risk of Solo Fractionals</h3>
+                    <p>Individual practitioners can be exceptional, but they carry inherent structural risks: vacation coverage, knowledge concentration, capacity constraints, and succession planning.</p>
+                    <p>For mission-critical technology leadership, these risks compound over time. Smart buyers either accept these limitations or choose institutional providers with bench depth.</p>
+                </div>
+
+                <div class="commentary-card">
+                    <h3 class="commentary-title">Beware the vCIO Trap</h3>
+                    <p>MSPs selling "virtual CIO" services face an irreconcilable conflict: they profit from implementing technology solutions they recommend as strategic advisors.</p>
+                    <p>True fractional CIOs maintain independence from implementation vendors. If your "advisor" is also selling you servers, software, or services, you're getting sales advice, not strategic counsel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Help Keep the Map Current</h2>
+                <p class="section-subtitle">This market map improves through community input. Submit corrections, additions, or insights to maintain accuracy.</p>
+            </div>
+
+            <form class="community-form" id="communityForm">
+                <div class="form-group">
+                    <label class="form-label">Your Name</label>
+                    <input type="text" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Company/Organization</label>
+                    <input type="text" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Market Feedback</label>
+                    <textarea class="form-textarea" placeholder="Share corrections, missing providers, or market insights..." required></textarea>
+                </div>
+
+                <button type="submit" class="cta-primary">Submit Feedback</button>
             </form>
-
-            <p class="privacy">
-                Your information is secure and will only be used to send you the report and relevant insights from Fortium Partners. We respect your privacy.
-            </p>
         </div>
-    </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <div class="fortium-logo">FORTIUM PARTNERS</div>
+            <h2 class="section-title" style="color: white;">Ready to Find Your Fractional Executive?</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.8); margin-bottom: 2rem;">
+                See how Fortium Partners benchmarks against this market map and find the right technology leadership for your organization.
+            </p>
+            <a href="https://www.fortiumpartners.com/contact" class="cta-primary" style="margin-right: 1rem;">Talk to a Fortium Partner</a>
+            <a href="#download" class="cta-secondary">Download Full Research</a>
+        </div>
+    </section>
 
     <script>
-        document.getElementById('leadForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // This would integrate with HubSpot's form API
-            alert('Thank you! Your download will begin shortly.');
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         });
+
+        // Market category interaction
+        document.querySelectorAll('.market-category').forEach(category => {
+            category.addEventListener('click', function() {
+                // Add interactive behavior here
+                console.log('Category clicked:', this.dataset.category);
+            });
+        });
+
+        // Community form submission
+        document.getElementById('communityForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your feedback! Your input helps keep the market map accurate and current.');
+        });
+
+        // Analytics tracking
+        if (typeof _hsq !== 'undefined') {
+            _hsq.push(['trackPageView']);
+        }
     </script>
 </body>
 </html>
