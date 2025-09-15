@@ -397,7 +397,8 @@
             background: white;
         }
 
-        .collapsible-intro {
+        .collapsible-intro,
+        .methodology-summary {
             background: #f8fafc;
             border-left: 4px solid #667eea;
             padding: 1.5rem;
@@ -405,13 +406,20 @@
             border-radius: 0 8px 8px 0;
         }
 
-        .collapsible-intro h4 {
+        .collapsible-intro h4,
+        .methodology-summary h4 {
             color: #374151;
             margin-bottom: 1rem;
         }
 
-        .collapsible-intro p {
+        .collapsible-intro p,
+        .methodology-summary p {
             color: #4a5568;
+            margin-bottom: 1rem;
+        }
+
+        .collapsible-intro p:last-child,
+        .methodology-summary p:last-child {
             margin-bottom: 0;
         }
 
@@ -789,7 +797,8 @@
                 padding: 1.5rem;
             }
 
-            .collapsible-intro {
+            .collapsible-intro,
+            .methodology-summary {
                 padding: 1.25rem;
                 margin: 1.5rem 0;
             }
@@ -1057,9 +1066,13 @@
             <div class="methodology-box">
                 <h2 id="methodology">Research Methodology</h2>
 
-                <div class="collapsible-intro">
-                    <h4>📊 Academic-Grade Research Standards</h4>
-                    <p>This analysis applies rigorous methodology with primary source verification, clear inclusion criteria, and a multi-metric scoring framework. We analyzed 156 organizations across 10 provider categories, conducting 247 stakeholder interviews and verifying every major claim through documented sources.</p>
+                <div class="methodology-summary">
+                    <h4>📊 Research Methodology Summary</h4>
+                    <p><strong>Data Collection:</strong> We analyzed 156 fractional technology leadership organizations using primary sources (official websites, team pages, press releases) and cross-verified bench sizes via LinkedIn company analytics. Where providers lacked transparency, we applied consistent estimation methodology and documented assumptions.</p>
+
+                    <p><strong>Inclusion Criteria:</strong> To qualify as a "pure-play fractional tech firm," providers needed: (1) fractional/interim IT leadership as core business, (2) publicly verifiable bench of named tech executives, and (3) no significant revenue from non-tech services. This excluded MSPs, staffing firms, and consultancies where tech leadership is secondary.</p>
+
+                    <p><strong>Scoring Framework:</strong> Each provider received scores (0-10) across four dimensions: Purity (focus on tech leadership), Scale (bench size/coverage), Continuity (backup systems), and Transparency (public disclosure of team). All 247 stakeholder interviews and data sources are documented below for replication.</p>
                 </div>
 
                 <details class="collapsible-section methodology">
