@@ -42,12 +42,7 @@
             transition: padding-left 0.3s ease;
         }
 
-        /* Navigation Helpers Styles */
-        .nav-wrapper {
-            position: relative;
-        }
-
-        /* Scroll Progress Bar */
+        /* Modern Navigation Styles */
         .scroll-progress {
             position: fixed;
             top: 0;
@@ -59,96 +54,109 @@
             transition: width 0.1s ease;
         }
 
-        /* Sidebar TOC */
-        .sidebar-toc {
+        /* Sticky Section Header */
+        .sticky-section {
             position: fixed;
+            top: 3px;
             left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 280px;
-            max-height: 70vh;
+            right: 0;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border: 1px solid #e2e8f0;
-            border-radius: 0 12px 12px 0;
-            padding: 1.5rem 1rem;
-            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
-            z-index: 999;
-            overflow-y: auto;
-            transition: transform 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .sidebar-toc.hidden {
-            transform: translateX(-100%) translateY(-50%);
-        }
-
-        .sidebar-toc h4 {
-            color: #4a5568;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
             border-bottom: 1px solid #e2e8f0;
-        }
-
-        .toc-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .toc-item {
-            margin-bottom: 0.5rem;
-        }
-
-        .toc-link {
-            display: block;
-            color: #4a5568;
-            text-decoration: none;
-            padding: 0.5rem 0.75rem;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-        }
-
-        .toc-link:hover {
-            background: #f0f9ff;
-            color: #0369a1;
-            border-left-color: #0ea5e9;
-        }
-
-        .toc-link.active {
-            background: #e0f2fe;
-            color: #0369a1;
-            border-left-color: #0284c7;
+            padding: 0.75rem 2rem;
+            font-size: 0.9rem;
+            color: #667eea;
             font-weight: 600;
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
         }
 
-        /* TOC Toggle Button */
-        .toc-toggle {
+        .sticky-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating Navigation Button */
+        .nav-toggle {
             position: fixed;
-            left: 20px;
-            bottom: 120px;
-            width: 48px;
-            height: 48px;
+            right: 20px;
+            bottom: 80px;
+            width: 56px;
+            height: 56px;
             background: #667eea;
             color: white;
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
             z-index: 1001;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             transition: all 0.3s ease;
         }
 
-        .toc-toggle:hover {
+        .nav-toggle:hover {
             background: #5a67d8;
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Floating Navigation Menu */
+        .floating-nav {
+            position: fixed;
+            right: 20px;
+            bottom: 150px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1rem 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            min-width: 220px;
+            max-height: 70vh;
+            overflow-y: auto;
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .floating-nav.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            visibility: visible;
+        }
+
+        .nav-section {
+            padding: 0.25rem 0;
+        }
+
+        .nav-link {
+            display: block;
+            color: #4a5568;
+            text-decoration: none;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: #f8fafc;
+            color: #2d3748;
+            border-left-color: #667eea;
+        }
+
+        .nav-link.active {
+            background: #eef2ff;
+            color: #4338ca;
+            border-left-color: #4338ca;
+            font-weight: 600;
         }
 
         /* Back to Top Button */
@@ -205,43 +213,16 @@
         }
 
         /* Mobile Adjustments */
-        @media (max-width: 1024px) {
-            .sidebar-toc {
-                transform: translateX(-100%) translateY(-50%);
-            }
-
-            .sidebar-toc.mobile-visible {
-                transform: translateX(0) translateY(-50%);
-                width: 320px;
-            }
-
-            body.toc-open {
-                overflow: hidden;
-            }
-
-            .mobile-toc-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 998;
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-            }
-
-            .mobile-toc-overlay.visible {
-                opacity: 1;
-                visibility: visible;
-            }
-        }
-
         @media (max-width: 768px) {
-            .toc-toggle {
-                left: 15px;
-                bottom: 80px;
+            .nav-toggle {
+                right: 15px;
+                bottom: 70px;
+            }
+
+            .floating-nav {
+                right: 15px;
+                bottom: 135px;
+                min-width: 200px;
             }
 
             .back-to-top {
@@ -252,12 +233,10 @@
             .section-anchor {
                 display: none;
             }
-        }
 
-        /* Desktop body adjustment when TOC is visible */
-        @media (min-width: 1025px) {
-            body.toc-visible {
-                padding-left: 300px;
+            .sticky-section {
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
             }
         }
 
@@ -1086,58 +1065,33 @@
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Mobile TOC Overlay -->
-    <div class="mobile-toc-overlay" id="mobileOverlay"></div>
+    <!-- Sticky Section Header -->
+    <div class="sticky-section" id="stickySection">
+        Currently reading: <span id="currentSection">Executive Summary</span>
+    </div>
 
-    <!-- Sidebar TOC -->
-    <nav class="sidebar-toc" id="sidebarToc">
-        <h4>Navigation</h4>
-        <ul class="toc-list">
-            <li class="toc-item">
-                <a href="#executive-summary" class="toc-link" data-section="executive-summary">Executive Summary</a>
-            </li>
-            <li class="toc-item">
-                <a href="#key-findings" class="toc-link" data-section="key-findings">Key Findings</a>
-            </li>
-            <li class="toc-item">
-                <a href="#market-map" class="toc-link" data-section="market-map">Market Map</a>
-            </li>
-            <li class="toc-item">
-                <a href="#buyers-guide" class="toc-link" data-section="buyers-guide">Buyer's Rule of Thumb</a>
-            </li>
-            <li class="toc-item">
-                <a href="#methodology" class="toc-link" data-section="methodology">Research Methodology</a>
-            </li>
-            <li class="toc-item">
-                <a href="#introduction" class="toc-link" data-section="introduction">Introduction</a>
-            </li>
-            <li class="toc-item">
-                <a href="#measurement-framework" class="toc-link" data-section="measurement-framework">Measurement Framework</a>
-            </li>
-            <li class="toc-item">
-                <a href="#detailed-findings" class="toc-link" data-section="detailed-findings">Provider Analysis</a>
-            </li>
-            <li class="toc-item">
-                <a href="#comparative-analysis" class="toc-link" data-section="comparative-analysis">Comparative Analysis</a>
-            </li>
-            <li class="toc-item">
-                <a href="#buyer-guidance" class="toc-link" data-section="buyer-guidance">Buyer Guidance</a>
-            </li>
-            <li class="toc-item">
-                <a href="#conclusion" class="toc-link" data-section="conclusion">Conclusion</a>
-            </li>
-            <li class="toc-item">
-                <a href="#data-appendix" class="toc-link" data-section="data-appendix">Data Appendix</a>
-            </li>
-            <li class="toc-item">
-                <a href="#citations" class="toc-link" data-section="citations">Citations</a>
-            </li>
-        </ul>
+    <!-- Floating Navigation Menu -->
+    <nav class="floating-nav" id="floatingNav">
+        <div class="nav-section">
+            <a href="#executive-summary" class="nav-link" data-section="executive-summary">Executive Summary</a>
+            <a href="#key-findings" class="nav-link" data-section="key-findings">Key Findings</a>
+            <a href="#market-map" class="nav-link" data-section="market-map">Market Map</a>
+            <a href="#buyers-guide" class="nav-link" data-section="buyers-guide">Buyer's Guide</a>
+            <a href="#methodology" class="nav-link" data-section="methodology">Methodology</a>
+            <a href="#introduction" class="nav-link" data-section="introduction">Introduction</a>
+            <a href="#measurement-framework" class="nav-link" data-section="measurement-framework">Framework</a>
+            <a href="#detailed-findings" class="nav-link" data-section="detailed-findings">Provider Analysis</a>
+            <a href="#comparative-analysis" class="nav-link" data-section="comparative-analysis">Comparison</a>
+            <a href="#buyer-guidance" class="nav-link" data-section="buyer-guidance">Buyer Guidance</a>
+            <a href="#conclusion" class="nav-link" data-section="conclusion">Conclusion</a>
+            <a href="#data-appendix" class="nav-link" data-section="data-appendix">Data Appendix</a>
+            <a href="#citations" class="nav-link" data-section="citations">Citations</a>
+        </div>
     </nav>
 
-    <!-- TOC Toggle Button -->
-    <button class="toc-toggle" id="tocToggle" title="Toggle Table of Contents">
-        📋
+    <!-- Navigation Toggle Button -->
+    <button class="nav-toggle" id="navToggle" title="Table of Contents">
+        📄
     </button>
 
     <!-- Back to Top Button -->
@@ -2670,33 +2624,43 @@
     </div>
 
     <script>
-        // Navigation Helpers JavaScript
+        // Modern Navigation JavaScript
         document.addEventListener('DOMContentLoaded', function() {
             const scrollProgress = document.getElementById('scrollProgress');
             const backToTop = document.getElementById('backToTop');
-            const tocToggle = document.getElementById('tocToggle');
-            const sidebarToc = document.getElementById('sidebarToc');
-            const mobileOverlay = document.getElementById('mobileOverlay');
-            const tocLinks = document.querySelectorAll('.toc-link');
+            const navToggle = document.getElementById('navToggle');
+            const floatingNav = document.getElementById('floatingNav');
+            const stickySection = document.getElementById('stickySection');
+            const currentSectionSpan = document.getElementById('currentSection');
+            const navLinks = document.querySelectorAll('.nav-link');
             const sectionAnchors = document.querySelectorAll('.section-anchor');
             const sections = document.querySelectorAll('h2[id], h3[id]');
 
-            let isMobile = window.innerWidth <= 1024;
-            let tocVisible = !isMobile; // Start visible on desktop, hidden on mobile
+            let navVisible = false;
 
-            // Initialize TOC visibility
-            if (tocVisible && !isMobile) {
-                document.body.classList.add('toc-visible');
-            } else {
-                sidebarToc.classList.add('hidden');
-            }
+            // Section title mapping for better display names
+            const sectionTitles = {
+                'executive-summary': 'Executive Summary',
+                'key-findings': 'Key Findings',
+                'market-map': 'Market Map',
+                'buyers-guide': 'Buyer\'s Rule of Thumb',
+                'methodology': 'Research Methodology',
+                'introduction': 'Introduction',
+                'measurement-framework': 'Measurement Framework',
+                'detailed-findings': 'Provider Analysis',
+                'comparative-analysis': 'Comparative Analysis',
+                'buyer-guidance': 'Buyer Guidance',
+                'conclusion': 'Conclusion',
+                'data-appendix': 'Data Appendix',
+                'citations': 'Complete Citations'
+            };
 
             // Scroll Progress Bar
             function updateScrollProgress() {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 const docHeight = document.documentElement.scrollHeight - window.innerHeight;
                 const scrollPercent = (scrollTop / docHeight) * 100;
-                scrollProgress.style.width = scrollPercent + '%';
+                scrollProgress.style.width = Math.min(scrollPercent, 100) + '%';
             }
 
             // Back to Top Button Visibility
@@ -2709,22 +2673,35 @@
                 }
             }
 
-            // Active Section Highlighting
+            // Sticky Section Header and Active Section Detection
             function updateActiveSection() {
                 let currentSection = '';
-                const scrollTop = window.pageYOffset + 100; // Offset for header
+                let currentSectionTitle = '';
+                const scrollTop = window.pageYOffset + 120; // Offset for sticky header
 
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
-
-                    if (scrollTop >= sectionTop && scrollTop <= sectionTop + sectionHeight) {
+                // Find current section
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    const section = sections[i];
+                    if (scrollTop >= section.offsetTop) {
                         currentSection = section.id;
+                        currentSectionTitle = sectionTitles[currentSection] || section.textContent;
+                        break;
                     }
-                });
+                }
 
-                // Update TOC active states
-                tocLinks.forEach(link => {
+                // Show sticky section header when scrolled past main header
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                if (scrollTop > headerHeight) {
+                    stickySection.classList.add('visible');
+                    if (currentSectionTitle) {
+                        currentSectionSpan.textContent = currentSectionTitle;
+                    }
+                } else {
+                    stickySection.classList.remove('visible');
+                }
+
+                // Update navigation active states
+                navLinks.forEach(link => {
                     const linkSection = link.getAttribute('data-section');
                     if (linkSection === currentSection) {
                         link.classList.add('active');
@@ -2734,37 +2711,21 @@
                 });
             }
 
-            // TOC Toggle Functionality
-            function toggleToc() {
-                if (isMobile) {
-                    // Mobile: Show/hide with overlay
-                    if (sidebarToc.classList.contains('mobile-visible')) {
-                        sidebarToc.classList.remove('mobile-visible');
-                        mobileOverlay.classList.remove('visible');
-                        document.body.classList.remove('toc-open');
-                    } else {
-                        sidebarToc.classList.add('mobile-visible');
-                        mobileOverlay.classList.add('visible');
-                        document.body.classList.add('toc-open');
-                    }
+            // Toggle Floating Navigation
+            function toggleNav() {
+                navVisible = !navVisible;
+                if (navVisible) {
+                    floatingNav.classList.add('visible');
                 } else {
-                    // Desktop: Toggle sidebar and adjust body padding
-                    tocVisible = !tocVisible;
-                    if (tocVisible) {
-                        sidebarToc.classList.remove('hidden');
-                        document.body.classList.add('toc-visible');
-                    } else {
-                        sidebarToc.classList.add('hidden');
-                        document.body.classList.remove('toc-visible');
-                    }
+                    floatingNav.classList.remove('visible');
                 }
             }
 
-            // Smooth scrolling for TOC links and section anchors
+            // Smooth scrolling
             function smoothScrollTo(targetId) {
                 const target = document.getElementById(targetId);
                 if (target) {
-                    const headerOffset = 80;
+                    const headerOffset = 100;
                     const targetPosition = target.offsetTop - headerOffset;
 
                     window.scrollTo({
@@ -2781,53 +2742,27 @@
                 updateActiveSection();
             });
 
-            window.addEventListener('resize', function() {
-                const wasMobile = isMobile;
-                isMobile = window.innerWidth <= 1024;
+            // Navigation Toggle Button
+            navToggle.addEventListener('click', toggleNav);
 
-                if (wasMobile !== isMobile) {
-                    // Reset TOC state when switching between mobile/desktop
-                    if (isMobile) {
-                        sidebarToc.classList.remove('mobile-visible');
-                        sidebarToc.classList.add('hidden');
-                        mobileOverlay.classList.remove('visible');
-                        document.body.classList.remove('toc-open', 'toc-visible');
-                    } else {
-                        sidebarToc.classList.remove('hidden', 'mobile-visible');
-                        mobileOverlay.classList.remove('visible');
-                        document.body.classList.remove('toc-open');
-                        if (tocVisible) {
-                            document.body.classList.add('toc-visible');
-                        }
-                    }
+            // Close navigation when clicking outside
+            document.addEventListener('click', function(e) {
+                if (navVisible && !floatingNav.contains(e.target) && !navToggle.contains(e.target)) {
+                    floatingNav.classList.remove('visible');
+                    navVisible = false;
                 }
             });
 
-            // TOC Toggle Button
-            tocToggle.addEventListener('click', toggleToc);
-
-            // Mobile Overlay Click (close TOC)
-            mobileOverlay.addEventListener('click', function() {
-                if (isMobile) {
-                    sidebarToc.classList.remove('mobile-visible');
-                    mobileOverlay.classList.remove('visible');
-                    document.body.classList.remove('toc-open');
-                }
-            });
-
-            // TOC Links
-            tocLinks.forEach(link => {
+            // Navigation Links
+            navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetSection = this.getAttribute('data-section');
                     smoothScrollTo(targetSection);
 
-                    // Close mobile TOC after clicking
-                    if (isMobile) {
-                        sidebarToc.classList.remove('mobile-visible');
-                        mobileOverlay.classList.remove('visible');
-                        document.body.classList.remove('toc-open');
-                    }
+                    // Close nav after clicking
+                    floatingNav.classList.remove('visible');
+                    navVisible = false;
                 });
             });
 
