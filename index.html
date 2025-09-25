@@ -286,13 +286,522 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        :root {
+            --primary-blue: #667eea;
+            --secondary-purple: #764ba2;
+            --accent-green: #10b981;
+            --text-dark: #1a202c;
+            --text-light: #4a5568;
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-subtle: #f1f5f9;
+            --border-light: #e2e8f0;
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --sidebar-width: 280px;
+            --content-max-width: 900px;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.7;
-            color: #2d3748;
-            background: #ffffff;
-            padding-left: 0;
-            transition: padding-left 0.3s ease;
+            color: var(--text-dark);
+            background: var(--bg-white);
+            margin-left: var(--sidebar-width);
+            transition: margin-left 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* ====== MAGICAL SIDEBAR NAVIGATION ====== */
+        .magical-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            color: white;
+            z-index: 1000;
+            overflow-y: auto;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .reading-progress {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-text {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .sidebar-nav {
+            padding: 1.5rem 0;
+        }
+
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0 1.5rem 0.5rem;
+            opacity: 0.7;
+        }
+
+        .nav-item {
+            position: relative;
+            margin-bottom: 0.25rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            transform: translateX(4px);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.15);
+            font-weight: 600;
+            transform: translateX(4px);
+        }
+
+        .nav-icon {
+            margin-right: 0.75rem;
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .section-progress {
+            margin-left: auto;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.625rem;
+            transition: var(--transition-smooth);
+        }
+
+        .section-progress.completed {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+        }
+
+        .section-progress.in-progress {
+            background: #f59e0b;
+            border-color: #f59e0b;
+        }
+
+        /* ====== MAIN CONTENT AREA ====== */
+        .main-content {
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* ====== MOBILE RESPONSIVE ====== */
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1001;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition-smooth);
+        }
+
+        .sidebar-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                margin-left: 0;
+            }
+
+            .magical-sidebar {
+                transform: translateX(-100%);
+            }
+
+            .magical-sidebar.mobile-open {
+                transform: translateX(0);
+            }
+
+            .sidebar-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .main-content {
+                padding: 1rem;
+                margin-top: 60px;
+            }
+        }
+
+        /* ====== SCROLLYTELLING & ANIMATIONS ====== */
+        .scroll-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animation.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-counter {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            display: inline-block;
+            min-width: 1ch;
+        }
+
+        .stat-plus {
+            color: var(--accent-green);
+        }
+
+        /* ====== MAGICAL CONTENT CARDS ====== */
+        .insight-card {
+            background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .insight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+        }
+
+        .insight-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .insight-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .insight-icon {
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+        }
+
+        .provider-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .provider-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-purple));
+        }
+
+        .provider-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--primary-blue);
+        }
+
+        .provider-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .provider-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .provider-badge {
+            background: linear-gradient(135deg, var(--accent-green), #059669);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ====== INTERACTIVE TABLE ====== */
+        .interactive-table {
+            background: var(--bg-white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            margin: 2rem 0;
+        }
+
+        .table-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .table-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .table-subtitle {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .market-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        .market-table th {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 1rem 0.75rem;
+            text-align: left;
+            border-bottom: 2px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .market-table td {
+            padding: 1rem 0.75rem;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: top;
+            transition: var(--transition-smooth);
+        }
+
+        .market-table tbody tr:hover {
+            background: var(--bg-light);
+            transform: scale(1.01);
+            box-shadow: var(--shadow-light);
+        }
+
+        .provider-name-cell {
+            font-weight: 600;
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+        }
+
+        .bench-size {
+            font-weight: 700;
+            color: var(--accent-green);
+            font-size: 1rem;
+        }
+
+        /* ====== ACCORDION SECTIONS ====== */
+        .accordion-section {
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            margin: 1rem 0;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .accordion-header {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition-smooth);
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .accordion-header:hover {
+            background: var(--bg-subtle);
+        }
+
+        .accordion-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .accordion-icon {
+            font-size: 1.25rem;
+            color: var(--primary-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-header.open .accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--bg-white);
+        }
+
+        .accordion-content.open {
+            padding: 1.5rem;
+            max-height: 2000px;
+        }
+
+        /* ====== DRAMATIC TYPOGRAPHY ====== */
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title-large {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title-large::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-purple));
+            border-radius: 2px;
+        }
+
+        .micro-copy {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
         }
 
         /* Modern Navigation Styles */
@@ -1319,6 +1828,96 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TC72M39"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
+    <!-- ====== MAGICAL SIDEBAR NAVIGATION ====== -->
+    <div class="magical-sidebar" id="magicalSidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">Market Map</div>
+            <div class="sidebar-subtitle">Fractional Technology Leadership</div>
+
+            <div class="reading-progress">
+                <div class="progress-text">Reading Progress</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="readingProgressFill"></div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Overview</div>
+                <div class="nav-item">
+                    <a href="#executive-summary" class="nav-link" data-section="executive-summary">
+                        <span class="nav-icon">📊</span>
+                        Executive Summary
+                        <div class="section-progress" data-section="executive-summary"></div>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#key-findings" class="nav-link" data-section="key-findings">
+                        <span class="nav-icon">🔍</span>
+                        Key Findings
+                        <div class="section-progress" data-section="key-findings"></div>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#market-map" class="nav-link" data-section="market-map">
+                        <span class="nav-icon">🗺️</span>
+                        Market Overview
+                        <div class="section-progress" data-section="market-map"></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Analysis</div>
+                <div class="nav-item">
+                    <a href="#buyers-guide" class="nav-link" data-section="buyers-guide">
+                        <span class="nav-icon">📋</span>
+                        Buyer's Guide
+                        <div class="section-progress" data-section="buyers-guide"></div>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#market-map-full" class="nav-link" data-section="market-map-full">
+                        <span class="nav-icon">📈</span>
+                        Market Map (Full)
+                        <div class="section-progress" data-section="market-map-full"></div>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#detailed-findings" class="nav-link" data-section="detailed-findings">
+                        <span class="nav-icon">🏢</span>
+                        Provider Analysis
+                        <div class="section-progress" data-section="detailed-findings"></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Research</div>
+                <div class="nav-item">
+                    <a href="#methodology" class="nav-link" data-section="methodology">
+                        <span class="nav-icon">🔬</span>
+                        Methodology
+                        <div class="section-progress" data-section="methodology"></div>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#introduction" class="nav-link" data-section="introduction">
+                        <span class="nav-icon">📖</span>
+                        Introduction
+                        <div class="section-progress" data-section="introduction"></div>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Mobile Sidebar Toggle -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        ☰
+    </button>
+
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -1355,23 +1954,39 @@
     <button class="back-to-top" id="backToTop" title="Back to Top">
         ↑
     </button>
-    <div class="header">
-        <h1>Market Map of Fractional Technology Leadership Providers</h1>
-        <p>Complete 23,000-word evidence-based analysis of the fractional CIO, CTO, and CISO market with comprehensive provider categories and decision frameworks</p>
-    </div>
+    <div class="main-content">
+        <!-- Hero Section with Dramatic Typography -->
+        <header class="hero-section scroll-animation">
+            <div class="micro-copy">Market Research Report • August 2025</div>
+            <h1 class="hero-title">Market Map of Fractional Technology Leadership</h1>
+            <p class="hero-subtitle" style="font-size: 1.25rem; color: var(--text-light); line-height: 1.6; margin-bottom: 2rem;">Complete evidence-based analysis of the fractional CIO, CTO, and CISO market with comprehensive provider categories and decision frameworks</p>
 
-    <div class="breadcrumb">
-        <a href="index.html">← Back to Market Map Overview</a>
-    </div>
-
-    <div class="container">
-        <div class="research-hook">
-            <div class="hook-content">
-                <h3>The Problem Most CEOs Don't See Coming</h3>
-                <p class="hook-text">Your company needs a CIO, CTO, or CISO—but not full-time. You Google "fractional CIO" and find dozens of "Top 10" lists mixing <strong>solo consultants</strong>, <strong>talent platforms</strong>, and <strong>actual firms</strong> as if they're the same thing. Make the wrong choice, and you're looking at strategic drift, vendor lock-in, or worse—a fractional leader who disappears when you need them most.</p>
-
-                <p class="hook-text"><strong>This changes now.</strong> We spent 12 months mapping the real fractional technology leadership market with academic rigor, not marketing fluff.</p>
+            <!-- Reading Time & Stats -->
+            <div class="hero-stats scroll-animation" style="display: flex; gap: 2rem; flex-wrap: wrap; margin: 2rem 0;">
+                <div class="stat-item" style="text-align: center;">
+                    <div class="stat-counter" data-target="23">0</div>
+                    <div class="micro-copy">Thousand Words</div>
+                </div>
+                <div class="stat-item" style="text-align: center;">
+                    <div class="stat-counter" data-target="180">0</div><span class="stat-plus">+</span>
+                    <div class="micro-copy">Providers Analyzed</div>
+                </div>
+                <div class="stat-item" style="text-align: center;">
+                    <div class="stat-counter" data-target="12">0</div>
+                    <div class="micro-copy">Months of Research</div>
+                </div>
             </div>
+        </header>
+
+        <!-- Problem Hook as Insight Card -->
+        <div class="insight-card scroll-animation">
+            <div class="insight-title">
+                <span class="insight-icon">🚨</span>
+                The Problem Most CEOs Don't See Coming
+            </div>
+            <p>Your company needs a CIO, CTO, or CISO—but not full-time. You Google "fractional CIO" and find dozens of "Top 10" lists mixing <strong>solo consultants</strong>, <strong>talent platforms</strong>, and <strong>actual firms</strong> as if they're the same thing. Make the wrong choice, and you're looking at strategic drift, vendor lock-in, or worse—a fractional leader who disappears when you need them most.</p>
+
+            <p><strong>This changes now.</strong> We spent 12 months mapping the real fractional technology leadership market with academic rigor, not marketing fluff.</p>
         </div>
 
         <div class="key-insights">
@@ -3084,7 +3699,244 @@
             updateScrollProgress();
             updateBackToTop();
             updateActiveSection();
+
+            // ====== MAGICAL FUNCTIONALITY ======
+            initializeMagicalFeatures();
         });
+
+        function initializeMagicalFeatures() {
+            // Scrollytelling Animations
+            initScrollAnimations();
+
+            // Animated Counters
+            initAnimatedCounters();
+
+            // Sidebar Functionality
+            initMagicalSidebar();
+
+            // Accordion Sections
+            initAccordionSections();
+
+            // Interactive Table Enhancements
+            initInteractiveTable();
+        }
+
+        // ====== SCROLL ANIMATIONS ======
+        function initScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.scroll-animation');
+
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // ====== ANIMATED COUNTERS ======
+        function initAnimatedCounters() {
+            const counters = document.querySelectorAll('.stat-counter');
+
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            });
+
+            counters.forEach(counter => {
+                counterObserver.observe(counter);
+            });
+        }
+
+        function animateCounter(element) {
+            const target = parseInt(element.dataset.target);
+            const duration = 2000;
+            const start = performance.now();
+
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - start;
+                const progress = Math.min(elapsed / duration, 1);
+
+                const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(target * easeOutCubic);
+
+                element.textContent = current;
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+
+            requestAnimationFrame(updateCounter);
+        }
+
+        // ====== MAGICAL SIDEBAR ======
+        function initMagicalSidebar() {
+            const sidebar = document.getElementById('magicalSidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const navLinks = sidebar.querySelectorAll('.nav-link');
+            const progressFill = document.getElementById('readingProgressFill');
+
+            // Mobile toggle functionality
+            sidebarToggle?.addEventListener('click', () => {
+                sidebar.classList.toggle('mobile-open');
+            });
+
+            // Sidebar navigation
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    // Remove active class from all links
+                    navLinks.forEach(l => l.classList.remove('active'));
+
+                    // Add active class to clicked link
+                    link.classList.add('active');
+
+                    // Smooth scroll to section
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+
+                    // Close mobile sidebar
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.remove('mobile-open');
+                    }
+                });
+            });
+
+            // Update reading progress and section indicators
+            function updateSidebarProgress() {
+                // Calculate reading progress
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+
+                progressFill.style.width = `${Math.min(scrollPercent, 100)}%`;
+
+                // Update section progress indicators
+                const sections = document.querySelectorAll('[id]');
+                const sectionProgress = {};
+
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    const id = section.id;
+
+                    if (rect.top <= window.innerHeight * 0.5 && rect.bottom >= 0) {
+                        // Section is in view
+                        const progressIndicator = sidebar.querySelector(`[data-section="${id}"]`);
+                        if (progressIndicator) {
+                            progressIndicator.classList.add('in-progress');
+                            progressIndicator.textContent = '◐';
+                        }
+
+                        // Update active nav link
+                        const navLink = sidebar.querySelector(`[href="#${id}"]`);
+                        if (navLink) {
+                            navLinks.forEach(l => l.classList.remove('active'));
+                            navLink.classList.add('active');
+                        }
+                    } else if (rect.bottom < 0) {
+                        // Section is completed (scrolled past)
+                        const progressIndicator = sidebar.querySelector(`[data-section="${id}"]`);
+                        if (progressIndicator) {
+                            progressIndicator.classList.remove('in-progress');
+                            progressIndicator.classList.add('completed');
+                            progressIndicator.textContent = '✓';
+                        }
+                    } else {
+                        // Section is upcoming
+                        const progressIndicator = sidebar.querySelector(`[data-section="${id}"]`);
+                        if (progressIndicator) {
+                            progressIndicator.classList.remove('in-progress', 'completed');
+                            progressIndicator.textContent = '';
+                        }
+                    }
+                });
+            }
+
+            // Update on scroll
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(updateSidebarProgress, 10);
+            });
+
+            // Initial update
+            updateSidebarProgress();
+        }
+
+        // ====== ACCORDION SECTIONS ======
+        function initAccordionSections() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('.accordion-icon');
+
+                    // Toggle current accordion
+                    const isOpen = content.classList.contains('open');
+
+                    if (isOpen) {
+                        content.classList.remove('open');
+                        header.classList.remove('open');
+                    } else {
+                        content.classList.add('open');
+                        header.classList.add('open');
+                    }
+                });
+            });
+        }
+
+        // ====== INTERACTIVE TABLE ======
+        function initInteractiveTable() {
+            const tableRows = document.querySelectorAll('.market-table tbody tr');
+
+            tableRows.forEach((row, index) => {
+                // Add staggered animation delay
+                row.style.animationDelay = `${index * 0.1}s`;
+
+                // Add click functionality for mobile
+                row.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        row.classList.toggle('expanded');
+                    }
+                });
+
+                // Add hover sound effect (optional)
+                row.addEventListener('mouseenter', () => {
+                    if (window.innerWidth > 768) {
+                        row.style.transform = 'scale(1.02) translateX(4px)';
+                    }
+                });
+
+                row.addEventListener('mouseleave', () => {
+                    if (window.innerWidth > 768) {
+                        row.style.transform = 'scale(1) translateX(0)';
+                    }
+                });
+            });
+        }
     </script>
 </body>
 </html>
