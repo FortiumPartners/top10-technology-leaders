@@ -287,111 +287,115 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --primary-blue: #667eea;
-            --secondary-purple: #764ba2;
-            --accent-green: #10b981;
-            --text-dark: #1a202c;
-            --text-light: #4a5568;
+            --primary-navy: #1e3a8a;
+            --secondary-gray: #475569;
+            --accent-blue: #0ea5e9;
+            --text-dark: #0f172a;
+            --text-light: #64748b;
             --bg-white: #ffffff;
             --bg-light: #f8fafc;
             --bg-subtle: #f1f5f9;
             --border-light: #e2e8f0;
-            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-medium: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
-            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition-smooth: all 0.2s ease;
             --sidebar-width: 280px;
             --content-max-width: 900px;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: Georgia, 'Times New Roman', serif;
             line-height: 1.7;
             color: var(--text-dark);
             background: var(--bg-white);
             margin-left: var(--sidebar-width);
             transition: margin-left 0.3s ease;
             overflow-x: hidden;
+            font-size: 16px;
         }
 
-        /* ====== MAGICAL SIDEBAR NAVIGATION ====== */
+        /* ====== PROFESSIONAL SIDEBAR NAVIGATION ====== */
         .magical-sidebar {
             position: fixed;
             top: 0;
             left: 0;
             width: var(--sidebar-width);
             height: 100vh;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
-            color: white;
+            background: var(--bg-white);
+            border-right: 1px solid var(--border-light);
             z-index: 1000;
             overflow-y: auto;
             transition: var(--transition-smooth);
-            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-medium);
         }
 
         .sidebar-header {
             padding: 2rem 1.5rem 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--border-light);
+            background: var(--bg-light);
         }
 
         .sidebar-title {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: var(--primary-navy);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         .sidebar-subtitle {
-            font-size: 0.875rem;
-            opacity: 0.9;
+            font-size: 0.85rem;
+            color: var(--text-light);
             line-height: 1.4;
         }
 
         .reading-progress {
-            margin-top: 1rem;
-            padding: 0.75rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
         }
 
         .progress-text {
             font-size: 0.75rem;
-            opacity: 0.9;
-            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: center;
         }
 
         .progress-bar {
             width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
+            height: 3px;
+            background: var(--border-light);
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #10b981, #3b82f6);
-            border-radius: 3px;
+            background: var(--accent-blue);
             transition: width 0.3s ease;
             width: 0%;
         }
 
         .sidebar-nav {
-            padding: 1.5rem 0;
+            padding: 1.5rem 1rem;
         }
 
         .nav-section {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .nav-section-title {
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0 1.5rem 0.5rem;
-            opacity: 0.7;
+            letter-spacing: 0.1em;
+            padding: 0 0.5rem 1rem;
+            color: var(--primary-navy);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         .nav-item {
@@ -402,40 +406,26 @@
         .nav-link {
             display: flex;
             align-items: center;
-            padding: 0.75rem 1.5rem;
-            color: white;
+            padding: 0.7rem 0.5rem;
+            color: var(--text-light);
             text-decoration: none;
             font-size: 0.875rem;
             transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 0;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::before,
-        .nav-link.active::before {
-            width: 100%;
+            border-left: 3px solid transparent;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         .nav-link:hover {
-            transform: translateX(4px);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            color: var(--primary-navy);
+            background: rgba(14, 165, 233, 0.05);
+            border-left-color: var(--accent-blue);
         }
 
         .nav-link.active {
-            background: rgba(255, 255, 255, 0.15);
+            color: var(--primary-navy);
+            background: rgba(14, 165, 233, 0.1);
+            border-left-color: var(--accent-blue);
             font-weight: 600;
-            transform: translateX(4px);
         }
 
         .nav-icon {
@@ -480,22 +470,22 @@
         .sidebar-toggle {
             display: none;
             position: fixed;
-            top: 1rem;
-            left: 1rem;
+            top: 2rem;
+            left: 2rem;
             z-index: 1001;
-            background: var(--primary-blue);
+            background: var(--primary-navy);
             color: white;
             border: none;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
+            border-radius: 4px;
+            width: 50px;
+            height: 50px;
             cursor: pointer;
             box-shadow: var(--shadow-medium);
             transition: var(--transition-smooth);
         }
 
         .sidebar-toggle:hover {
-            transform: scale(1.1);
+            background: var(--accent-blue);
         }
 
         @media (max-width: 768px) {
@@ -536,156 +526,125 @@
         }
 
         .stat-counter {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary-blue);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-navy);
             display: inline-block;
             min-width: 1ch;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         .stat-plus {
-            color: var(--accent-green);
+            color: var(--accent-blue);
         }
 
-        /* ====== MAGICAL CONTENT CARDS ====== */
-        .insight-card {
-            background: linear-gradient(135deg, #667eea22 0%, #764ba222 100%);
-            border: 1px solid var(--border-light);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2rem 0;
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition-smooth);
+        /* ====== PROFESSIONAL CONTENT SECTIONS ====== */
+        .content-section {
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--bg-subtle);
         }
 
-        .insight-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
-        }
-
-        .insight-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .insight-title {
-            font-size: 1.5rem;
+        .section-title {
+            font-size: 1.75rem;
             font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .insight-icon {
-            margin-right: 0.75rem;
-            font-size: 1.5rem;
-        }
-
-        .provider-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: 1.5rem;
+            color: var(--primary-navy);
             margin-bottom: 1.5rem;
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
+            font-family: Georgia, serif;
         }
 
-        .provider-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-purple));
-        }
-
-        .provider-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-medium);
-            border-color: var(--primary-blue);
-        }
-
-        .provider-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-        }
-
-        .provider-name {
+        .subsection-title {
             font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-dark);
+            font-weight: 600;
+            color: var(--primary-navy);
+            margin: 2rem 0 1rem 0;
+            font-family: Georgia, serif;
         }
 
-        .provider-badge {
-            background: linear-gradient(135deg, var(--accent-green), #059669);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: var(--bg-white);
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            transition: border-color 0.2s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.875rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            margin-top: 0.5rem;
         }
 
-        /* ====== INTERACTIVE TABLE ====== */
-        .interactive-table {
+        /* ====== PROFESSIONAL TABLE ====== */
+        .provider-table-container {
             background: var(--bg-white);
-            border-radius: 16px;
+            border: 1px solid var(--border-light);
             overflow: hidden;
-            box-shadow: var(--shadow-light);
-            margin: 2rem 0;
+            margin: 3rem 0;
         }
 
-        .table-header {
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .table-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .table-subtitle {
-            opacity: 0.9;
-            font-size: 0.9rem;
-        }
-
-        .market-table {
+        .provider-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.875rem;
         }
 
-        .market-table th {
+        .provider-table th {
             background: var(--bg-light);
-            color: var(--text-dark);
-            font-weight: 600;
-            padding: 1rem 0.75rem;
+            color: var(--primary-navy);
+            font-weight: 700;
+            padding: 1rem;
             text-align: left;
             border-bottom: 2px solid var(--border-light);
-            position: sticky;
-            top: 0;
-            z-index: 10;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
-        .market-table td {
-            padding: 1rem 0.75rem;
+        .provider-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .provider-table tr:nth-child(even) {
+            background: rgba(248, 250, 252, 0.5);
+        }
+
+        .provider-table tr:hover {
+            background: rgba(14, 165, 233, 0.05);
+        }
+
+        /* ====== MAIN CONTENT TYPOGRAPHY ====== */
+        .hero-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--primary-navy);
+            font-family: Georgia, serif;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
             border-bottom: 1px solid var(--border-light);
             vertical-align: top;
             transition: var(--transition-smooth);
@@ -2292,7 +2251,7 @@
             <h3>Table 1: Market Map (full)</h3>
             <p><strong>Table 1. Market Map of Fractional Technology Leadership Providers (U.S. focus, as of Aug 2025)</strong></p>
 
-            <table class="market-table">
+            <table class="provider-table">
                 <thead>
                     <tr>
                         <th>Provider / Segment</th>
